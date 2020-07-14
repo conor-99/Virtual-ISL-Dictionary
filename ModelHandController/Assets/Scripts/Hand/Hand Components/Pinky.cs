@@ -5,6 +5,7 @@ public class Pinky : MonoBehaviour
 {
     
     private static Position resetPosition = Position.ExtensionAdduction;
+    
     private static Dictionary<Joint, string> jointNames = new Dictionary<Joint, string>() {
         { Joint.Metacarpal, "Palm_04" },
         { Joint.Proximal, "Pinky_01" },
@@ -12,7 +13,7 @@ public class Pinky : MonoBehaviour
         { Joint.Distal, "Pinky_03" }
     };
 
-    private static Dictionary<Position, Dictionary<Joint, Vector3>> positions = new Dictionary<Position, Dictionary<Joint, Vector3>>() {
+    private static Dictionary<Position, Dictionary<Joint, Vector3>> rotations = new Dictionary<Position, Dictionary<Joint, Vector3>>() {
         {
             Position.ExtensionAdduction, new Dictionary<Joint, Vector3>() {
                 { Joint.Metacarpal, new Vector3(5.3f, 88.5f, -12.6f) },
@@ -76,7 +77,7 @@ public class Pinky : MonoBehaviour
     }
 
     public static Vector3 GetJointRotationInPosition(Position position, Joint joint) {
-        return positions[position][joint];
+        return rotations[position][joint];
     }
 
     public static Position GetResetPosition() {
