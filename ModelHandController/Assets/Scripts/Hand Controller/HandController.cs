@@ -5,12 +5,15 @@ using UnityEngine;
 public class HandController : MonoBehaviour
 {
     
+    [Header("Component Positions")]
     public Overall.Position overallPosition = Overall.Position.Anterior;
+    [Space]
     public Thumb.Position thumbPosition = Thumb.Position.ExtensionAdduction;
     public Index.Position indexPosition = Index.Position.ExtensionAdduction;
     public Middle.Position middlePosition = Middle.Position.ExtensionAdduction;
     public Ring.Position ringPosition = Ring.Position.ExtensionAdduction;
     public Pinky.Position pinkyPosition = Pinky.Position.ExtensionAdduction;
+    [Space]
     public Hand.Position handPosition = Hand.Position.Standard;
     public Forearm.Position forearmPosition = Forearm.Position.Standard;
     
