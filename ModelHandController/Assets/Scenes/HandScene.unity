@@ -928,12 +928,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f59026e3ef0f0a4e9b6c8f859d6cdf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overallPosition: 2
+  overallPosition: 0
   thumbPosition: 0
   indexPosition: 0
   middlePosition: 0
   ringPosition: 0
-  pinkyPosition: 2
+  pinkyPosition: 0
   handPosition: 0
   forearmPosition: 0
 --- !u!1 &705507993
