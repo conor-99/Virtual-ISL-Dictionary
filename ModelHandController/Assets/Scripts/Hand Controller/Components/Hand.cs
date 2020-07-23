@@ -31,7 +31,7 @@ public class Hand : MonoBehaviour
     }
 
     public enum Position {
-        Standard
+        Standard = 0
     }
 
     public enum Joint {

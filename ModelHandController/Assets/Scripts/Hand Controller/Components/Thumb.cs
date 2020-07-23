@@ -41,7 +41,7 @@ public class Thumb : MonoBehaviour
     }
 
     public enum Position {
-        ExtensionAdduction
+        ExtensionAdduction = 0
     }
 
     public enum Joint {

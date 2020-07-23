@@ -85,13 +85,13 @@ public class Pinky : MonoBehaviour
     }
 
     public enum Position {
-        ExtensionAdduction,
-        ExtensionAbduction,
-        FlexionFull,
-        FlexionFullPartial,
-        FlexionPhalanges,
-        FlexionCarpals,
-        Opposition
+        ExtensionAdduction = 0,
+        ExtensionAbduction = 1,
+        FlexionFull = 2,
+        FlexionFullPartial = 3,
+        FlexionPhalanges = 4,
+        FlexionCarpals = 5,
+        Opposition = 6
     }
 
     public enum Joint {

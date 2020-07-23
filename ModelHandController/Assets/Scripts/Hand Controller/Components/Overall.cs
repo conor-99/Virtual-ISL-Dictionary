@@ -46,10 +46,10 @@ public class Overall : MonoBehaviour
     }
 
     public enum Position {
-        Anterior,
-        Posterior,
-        Left,
-        Right
+        Anterior = 0,
+        Posterior = 1,
+        Left = 2,
+        Right = 3
 
     }
 
