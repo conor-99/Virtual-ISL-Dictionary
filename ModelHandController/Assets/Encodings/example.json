@@ -1,0 +1,15 @@
+{
+    "name": "Example",
+    "keyframes": [
+        {
+            "overall": 2,
+            "thumb": 0,
+            "index": 0,
+            "middle": 0,
+            "ring": 0,
+            "pinky": 4,
+            "hand": 0,
+            "forearm": 0
+        }
+    ]
+}

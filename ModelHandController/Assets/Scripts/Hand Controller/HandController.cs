@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 
 public class HandController : MonoBehaviour
 {
     
-    [Header("Component Positions")]
+    [Header("Hand Component Positions")]
     public Overall.Position overallPosition = Overall.Position.Anterior;
     [Space]
     public Thumb.Position thumbPosition = Thumb.Position.ExtensionAdduction;
@@ -37,6 +36,28 @@ public class HandController : MonoBehaviour
         UpdatePinky(Pinky.GetResetPosition());
         UpdateHand(Hand.GetResetPosition());
         UpdateForearm(Forearm.GetResetPosition());
+    }
+
+    public void ImportPosition(string filePath) {
+
+        Encoding encoding = EncodingController.Decode(filePath);
+        Keyframe keyframe = encoding.keyframes[0]; // just use the first keyframe for now
+        
+        overallPosition = (Overall.Position) keyframe.overall;
+        thumbPosition = (Thumb.Position) keyframe.thumb;
+        indexPosition = (Index.Position) keyframe.index;
+        middlePosition = (Middle.Position) keyframe.middle;
+        ringPosition = (Ring.Position) keyframe.ring;
+        pinkyPosition = (Pinky.Position) keyframe.pinky;
+        handPosition = (Hand.Position) keyframe.hand;
+        forearmPosition = (Forearm.Position) keyframe.forearm;
+
+        Update();
+
+    }
+
+    public void ExportPosition(string filePath) {
+        // To-do
     }
 
     private void UpdateOverall(Overall.Position position) {
