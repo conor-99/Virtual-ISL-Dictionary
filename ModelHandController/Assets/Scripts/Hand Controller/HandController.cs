@@ -38,7 +38,7 @@ public class HandController : MonoBehaviour
         UpdateForearm(Forearm.GetResetPosition());
     }
 
-    public void ImportPosition(string filePath) {
+    public void ImportPosition(string filePath) {   
 
         Encoding encoding = EncodingController.Decode(filePath);
         Keyframe keyframe = encoding.keyframes[0]; // just use the first keyframe for now

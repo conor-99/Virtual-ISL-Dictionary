@@ -18,7 +18,7 @@ public class EncodingController : MonoBehaviour
             string json = stream.ReadToEnd();
             encoding = JsonUtility.FromJson<Encoding>(json);
         }
-        
+
         return encoding;
 
     }
