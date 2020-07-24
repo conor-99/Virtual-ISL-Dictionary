@@ -5,12 +5,12 @@ An application that uses a virtual hand model and a series of pre-programmed mov
 
 # Getting Started
 
-## prerequistes:
+## Prerequisites:
 1. Have Unity installed (no modules needed currently, base installation only)
 2. Have Blender installed
 
 
-## Contolling the model for the first time:
+## Controlling the model for the first time:
 1. Clone the repo
 2. Open the folder *Virtual-ISL-Dictionary\ModelHandController* with Unity
 3. Select *HandModelController* to use hand controller script on the right hand side of the screen
