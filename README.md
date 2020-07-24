@@ -2,6 +2,7 @@
 
 An application that uses a virtual hand model and a series of pre-programmed movements to display ISL signs on request.
 
+This project is part of Microsoft's 2020 Hackathon. You can find the project page [here](https://garagehackbox.azurewebsites.net/hackathons/2107/projects/92241).
 
 # Getting Started
 
