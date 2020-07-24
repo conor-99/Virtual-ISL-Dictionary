@@ -6,7 +6,7 @@ An application that uses a virtual hand model and a series of pre-programmed mov
 # Getting Started
 
 ## prerequistes:
-1. Have Unity installed
+1. Have Unity installed (no modules needed currently, base installation only)
 2. Have Blender installed
 
 
