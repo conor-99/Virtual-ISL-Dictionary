@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ring : MonoBehaviour
-{
+public class Ring : MonoBehaviour {
     
     private static Position resetPosition = Position.ExtensionAdduction;
     

@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Overall : MonoBehaviour
-{
+public class Overall : MonoBehaviour {
     
     private static Position resetPosition = Position.Anterior;
-    private static Vector3 resetModelPosition = new Vector3(-0.1f, 0.7f, -5.1f);
+    private static Vector3 resetModelPosition = new Vector3(0.0f, 0.7f, -5.7f);
     
     private static string modelName = "HandModelPivot";
 

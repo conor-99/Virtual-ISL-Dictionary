@@ -2,35 +2,44 @@
 using UnityEngine;
 
 [CustomEditor(typeof(HandController))]
-public class HandControllerEditor : Editor
-{
+public class HandControllerEditor : Editor {
 
     public override void OnInspectorGUI() {
 
         DrawDefaultInspector();
         HandController handController = (HandController) target;
+        
+        GUILayout.Space(8f);
+        GUILayout.Label("Basic Model Control", EditorStyles.boldLabel);
+        
+        if (GUILayout.Button("Update Model"))
+            handController.UpdateModel();
+
+        if (GUILayout.Button("Reset Model"))
+            handController.ResetModel();
 
         GUILayout.Space(5f);
-        GUILayout.Label("Basic Control", EditorStyles.boldLabel);
+        GUILayout.Label("Keyframe Control", EditorStyles.boldLabel);
         
-        if (GUILayout.Button("Update"))
-            handController.Update();
+        if (GUILayout.Button("Next Keyframe"))
+            handController.NextKeyframe();
+        
+        if (GUILayout.Button("Previous Keyframe"))
+            handController.PreviousKeyframe();
 
-        if (GUILayout.Button("Reset"))
-            handController.Reset();
+        GUILayout.Space(5f);
+        GUILayout.Label("Import and Export Gestures", EditorStyles.boldLabel);
 
-        GUILayout.Label("Import and Export", EditorStyles.boldLabel);
-
-        if (GUILayout.Button("Import Position")) {
+        if (GUILayout.Button("Import Gesture")) {
 
             string filePath = EditorUtility.OpenFilePanel("Select a JSON file", "", "json");
 
             if (filePath.Length != 0)
-                handController.ImportPosition(filePath);
+                handController.ImportGesture(filePath);
 
         }
 
-        if (GUILayout.Button("Export Position")) {
+        if (GUILayout.Button("Export Gesture")) {
             // To-do
         }
 

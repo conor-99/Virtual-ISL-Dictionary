@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Middle : MonoBehaviour
-{
+public class Middle : MonoBehaviour {
     
     private static Position resetPosition = Position.ExtensionAdduction;
     

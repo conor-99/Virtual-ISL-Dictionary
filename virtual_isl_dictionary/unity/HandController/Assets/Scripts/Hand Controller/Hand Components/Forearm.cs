@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Forearm : MonoBehaviour
-{
+public class Forearm : MonoBehaviour {
     
     private static Position resetPosition = Position.Standard;
     

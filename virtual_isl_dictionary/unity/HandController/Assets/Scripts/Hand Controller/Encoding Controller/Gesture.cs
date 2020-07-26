@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class Encoding {
+public class Gesture {
     public string name;
     public Keyframe[] keyframes;
 }

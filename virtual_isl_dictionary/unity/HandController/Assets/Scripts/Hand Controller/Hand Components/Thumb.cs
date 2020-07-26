@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Thumb : MonoBehaviour
-{
+public class Thumb : MonoBehaviour {
     
     private static Position resetPosition = Position.ExtensionAdduction;
     

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pinky : MonoBehaviour
-{
+public class Pinky : MonoBehaviour {
     
     private static Position resetPosition = Position.ExtensionAdduction;
     

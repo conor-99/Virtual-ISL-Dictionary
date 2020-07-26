@@ -3,48 +3,50 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour {
     
-    [Header("Model Position")]
+    [Header("Positions: Model")]
     public Vector3 modelPosition;
     
-    [Header("Hand/Arm Positions")]
+    [Header("Positions: Hand/Arm")]
     public Overall.Position overallPosition = Overall.Position.Anterior;
     public Forearm.Position forearmPosition = Forearm.Position.Standard;
     public Hand.Position handPosition = Hand.Position.Standard;
     
-    [Header("Finger Positions")]
+    [Header("Positions: Finger")]
     public Thumb.Position thumbPosition = Thumb.Position.ExtensionAdduction;
     public Index.Position indexPosition = Index.Position.ExtensionAdduction;
     public Middle.Position middlePosition = Middle.Position.ExtensionAdduction;
     public Ring.Position ringPosition = Ring.Position.ExtensionAdduction;   
     public Pinky.Position pinkyPosition = Pinky.Position.ExtensionAdduction;
     
+    private Gesture gesture = null;
+    private int currentKeyframe = 0;
+
+    public void Start() { }
+
     public void Update() {
-        UpdateOverall(overallPosition, modelPosition);
-        UpdateThumb(thumbPosition);
-        UpdateIndex(indexPosition);
-        UpdateMiddle(middlePosition);
-        UpdateRing(ringPosition);
-        UpdatePinky(pinkyPosition);
-        UpdateHand(handPosition);
-        UpdateForearm(forearmPosition);
+        UpdateModel();
     }
 
-    public void Reset() {
-        UpdateOverall(Overall.GetResetPosition(), Overall.GetResetModelPosition());
-        UpdateThumb(Thumb.GetResetPosition());
-        UpdateIndex(Index.GetResetPosition());
-        UpdateMiddle(Middle.GetResetPosition());
-        UpdateRing(Ring.GetResetPosition());
-        UpdatePinky(Pinky.GetResetPosition());
-        UpdateHand(Hand.GetResetPosition());
-        UpdateForearm(Forearm.GetResetPosition());
+    public void ImportGesture(string filePath) {
+
+        gesture = EncodingController.Decode(filePath);
+        currentKeyframe = 0;
+
+        SetPositionsFromCurrentKeyframe();
+        UpdateModel();
+
     }
 
-    public void ImportPosition(string filePath) {   
+    private void SetPositionsFromCurrentKeyframe() {
 
-        Encoding encoding = EncodingController.Decode(filePath);
-        Keyframe keyframe = encoding.keyframes[0]; // just use the first keyframe for now
-        
+        if (gesture == null)
+            return;
+
+        if ((currentKeyframe < 0) || (currentKeyframe >= gesture.keyframes.Length))
+            return;
+
+        Keyframe keyframe = gesture.keyframes[currentKeyframe];
+
         modelPosition = new Vector3(keyframe.modelPosition.x, keyframe.modelPosition.y, keyframe.modelPosition.z);
         overallPosition = (Overall.Position) keyframe.overall;
         thumbPosition = (Thumb.Position) keyframe.thumb;
@@ -55,12 +57,60 @@ public class HandController : MonoBehaviour {
         handPosition = (Hand.Position) keyframe.hand;
         forearmPosition = (Forearm.Position) keyframe.forearm;
 
-        Update();
+    }
+
+    public void ExportGesture(string filePath) {
+        // To-do
+    }
+
+    public void NextKeyframe() {
+
+        if (gesture == null)
+            return;
+        
+        if (currentKeyframe >= gesture.keyframes.Length - 1)
+            return;
+        
+        currentKeyframe++;
+        SetPositionsFromCurrentKeyframe();
+        UpdateModel();
 
     }
 
-    public void ExportPosition(string filePath) {
-        // To-do
+    public void PreviousKeyframe() {
+
+        if (gesture == null)
+            return;
+        
+        if (currentKeyframe <= 0)
+            return;
+        
+        currentKeyframe--;
+        SetPositionsFromCurrentKeyframe();
+        UpdateModel();
+
+    }
+
+    public void UpdateModel() {
+        UpdateOverall(overallPosition, modelPosition);
+        UpdateThumb(thumbPosition);
+        UpdateIndex(indexPosition);
+        UpdateMiddle(middlePosition);
+        UpdateRing(ringPosition);
+        UpdatePinky(pinkyPosition);
+        UpdateHand(handPosition);
+        UpdateForearm(forearmPosition);
+    }
+
+    public void ResetModel() {
+        UpdateOverall(Overall.GetResetPosition(), Overall.GetResetModelPosition());
+        UpdateThumb(Thumb.GetResetPosition());
+        UpdateIndex(Index.GetResetPosition());
+        UpdateMiddle(Middle.GetResetPosition());
+        UpdateRing(Ring.GetResetPosition());
+        UpdatePinky(Pinky.GetResetPosition());
+        UpdateHand(Hand.GetResetPosition());
+        UpdateForearm(Forearm.GetResetPosition());
     }
 
     private void UpdateOverall(Overall.Position position, Vector3 _modelPosition) {
@@ -79,6 +129,34 @@ public class HandController : MonoBehaviour {
         }
 
         GameObject.Find(Overall.GetModelName()).transform.position = _modelPosition;
+
+    }
+
+    private void UpdateForearm(Forearm.Position position) {
+
+        if (forearmPosition != position)
+            forearmPosition = position;
+
+        var joints = Forearm.Joint.GetValues(typeof(Forearm.Joint)).Cast<Forearm.Joint>();
+
+        foreach (var joint in joints) {
+            string jointName = Forearm.GetJointName(joint);
+            GameObject.Find(jointName).transform.localEulerAngles = Forearm.GetJointRotationInPosition(position, joint);
+        }
+
+    }
+
+    private void UpdateHand(Hand.Position position) {
+
+        if (handPosition != position)
+            handPosition = position;
+
+        var joints = Hand.Joint.GetValues(typeof(Hand.Joint)).Cast<Hand.Joint>();
+
+        foreach (var joint in joints) {
+            string jointName = Hand.GetJointName(joint);
+            GameObject.Find(jointName).transform.localEulerAngles = Hand.GetJointRotationInPosition(position, joint);
+        }
 
     }
 
@@ -148,34 +226,6 @@ public class HandController : MonoBehaviour {
         foreach (var joint in joints) {
             string jointName = Pinky.GetJointName(joint);
             GameObject.Find(jointName).transform.localEulerAngles = Pinky.GetJointRotationInPosition(position, joint);
-        }
-
-    }
-
-    private void UpdateHand(Hand.Position position) {
-
-        if (handPosition != position)
-            handPosition = position;
-
-        var joints = Hand.Joint.GetValues(typeof(Hand.Joint)).Cast<Hand.Joint>();
-
-        foreach (var joint in joints) {
-            string jointName = Hand.GetJointName(joint);
-            GameObject.Find(jointName).transform.localEulerAngles = Hand.GetJointRotationInPosition(position, joint);
-        }
-
-    }
-
-    private void UpdateForearm(Forearm.Position position) {
-
-        if (forearmPosition != position)
-            forearmPosition = position;
-
-        var joints = Forearm.Joint.GetValues(typeof(Forearm.Joint)).Cast<Forearm.Joint>();
-
-        foreach (var joint in joints) {
-            string jointName = Forearm.GetJointName(joint);
-            GameObject.Find(jointName).transform.localEulerAngles = Forearm.GetJointRotationInPosition(position, joint);
         }
 
     }
