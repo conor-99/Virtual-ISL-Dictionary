@@ -1,23 +1,25 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-public class HandController : MonoBehaviour
-{
+public class HandController : MonoBehaviour {
     
-    [Header("Hand Component Positions")]
+    [Header("Model Position")]
+    public Vector3 modelPosition;
+    
+    [Header("Hand/Arm Positions")]
     public Overall.Position overallPosition = Overall.Position.Anterior;
-    [Space]
+    public Forearm.Position forearmPosition = Forearm.Position.Standard;
+    public Hand.Position handPosition = Hand.Position.Standard;
+    
+    [Header("Finger Positions")]
     public Thumb.Position thumbPosition = Thumb.Position.ExtensionAdduction;
     public Index.Position indexPosition = Index.Position.ExtensionAdduction;
     public Middle.Position middlePosition = Middle.Position.ExtensionAdduction;
-    public Ring.Position ringPosition = Ring.Position.ExtensionAdduction;
+    public Ring.Position ringPosition = Ring.Position.ExtensionAdduction;   
     public Pinky.Position pinkyPosition = Pinky.Position.ExtensionAdduction;
-    [Space]
-    public Hand.Position handPosition = Hand.Position.Standard;
-    public Forearm.Position forearmPosition = Forearm.Position.Standard;
     
     public void Update() {
-        UpdateOverall(overallPosition);
+        UpdateOverall(overallPosition, modelPosition);
         UpdateThumb(thumbPosition);
         UpdateIndex(indexPosition);
         UpdateMiddle(middlePosition);
@@ -28,7 +30,7 @@ public class HandController : MonoBehaviour
     }
 
     public void Reset() {
-        UpdateOverall(Overall.GetResetPosition());
+        UpdateOverall(Overall.GetResetPosition(), Overall.GetResetModelPosition());
         UpdateThumb(Thumb.GetResetPosition());
         UpdateIndex(Index.GetResetPosition());
         UpdateMiddle(Middle.GetResetPosition());
@@ -43,6 +45,7 @@ public class HandController : MonoBehaviour
         Encoding encoding = EncodingController.Decode(filePath);
         Keyframe keyframe = encoding.keyframes[0]; // just use the first keyframe for now
         
+        modelPosition = new Vector3(keyframe.modelPosition.x, keyframe.modelPosition.y, keyframe.modelPosition.z);
         overallPosition = (Overall.Position) keyframe.overall;
         thumbPosition = (Thumb.Position) keyframe.thumb;
         indexPosition = (Index.Position) keyframe.index;
@@ -60,10 +63,13 @@ public class HandController : MonoBehaviour
         // To-do
     }
 
-    private void UpdateOverall(Overall.Position position) {
+    private void UpdateOverall(Overall.Position position, Vector3 _modelPosition) {
 
         if (overallPosition != position)
             overallPosition = position;
+        
+        if (modelPosition != _modelPosition)
+            modelPosition = _modelPosition;
 
         var joints = Overall.Joint.GetValues(typeof(Overall.Joint)).Cast<Overall.Joint>();
 
@@ -71,6 +77,8 @@ public class HandController : MonoBehaviour
             string jointName = Overall.GetJointName(joint);
             GameObject.Find(jointName).transform.localEulerAngles = Overall.GetJointRotationInPosition(position, joint);
         }
+
+        GameObject.Find(Overall.GetModelName()).transform.position = _modelPosition;
 
     }
 

@@ -5,7 +5,10 @@ public class Overall : MonoBehaviour
 {
     
     private static Position resetPosition = Position.Anterior;
+    private static Vector3 resetModelPosition = new Vector3(-0.1f, 0.7f, -5.1f);
     
+    private static string modelName = "HandModelPivot";
+
     private static Dictionary<Joint, string> jointNames = new Dictionary<Joint, string>() {
         { Joint.OverallRotation, "HandModelPivot" }
     };
@@ -43,6 +46,14 @@ public class Overall : MonoBehaviour
 
     public static Position GetResetPosition() {
         return resetPosition;
+    }
+
+    public static Vector3 GetResetModelPosition() {
+        return resetModelPosition;
+    }
+
+    public static string GetModelName() {
+        return modelName;
     }
 
     public enum Position {

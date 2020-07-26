@@ -2,6 +2,7 @@ using System;
 
 [Serializable]
 public class Keyframe {
+    public Point modelPosition;
     public int overall;
     public int thumb;
     public int index;
