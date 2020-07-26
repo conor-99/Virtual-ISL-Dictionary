@@ -23,14 +23,14 @@ This project is being developed as part of Microsoft's 2020 Hackathon. You can f
 ### Running the Flutter application
 
 1. Clone the repository
-2. Open the folder `virtual-isl-dictionary` in Visual Studio Code
+2. Open the folder `virtual_isl_dictionary` in Visual Studio Code
 3. Ensure you have an Android emulator or device connected
 4. Open the file `lib/main.dart`
 5. Click *Run > Start Debugging* in Visual Studio Code
 
 ### Making changes to the Unity application
 
-1. Open the folder `virtual-isl-dictionary/unity/HandController` in Unity
+1. Open the folder `virtual_isl_dictionary/unity/HandController` in Unity
 2. *(Optional)* Make changes to the project
 3. Click *File > Build Settings*
 4. Ensure Android is selected as the build platform
@@ -44,4 +44,4 @@ This project is being developed as part of Microsoft's 2020 Hackathon. You can f
     - ![Target architectures](resources/docs/images/build_settings_architectures.png)
 8. Close the settings windows
 9. Click *Flutter > Export Android (Unity 2019.3.\*)*
-10. Once the build has completed copy and replace this file `virtual-isl-dictionary/android/unity-classes/unity-classes.jar` with this file `virtual-isl-dictionary/android/UnityExport/libs/unity-classes.jar`
+10. Once the build has completed copy and replace this file `virtual_isl_dictionary/android/unity-classes/unity-classes.jar` with this file `virtual_isl_dictionary/android/UnityExport/libs/unity-classes.jar`
