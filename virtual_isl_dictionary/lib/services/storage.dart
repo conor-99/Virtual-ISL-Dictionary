@@ -1,9 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Storage {
-  static String keyUsername = 'username';
-  static String keyPassword = 'password';
-
   static Future<void> setValue(String key, String value) async {
     (await _getPreferences()).setString(key, value);
   }
