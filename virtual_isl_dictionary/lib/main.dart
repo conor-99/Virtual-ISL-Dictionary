@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:virtual_isl_dictionary/secondpage.dart';
+import 'package:virtual_isl_dictionary/unity_page.dart';
 
 void main() {
   runApp(App());
@@ -9,9 +9,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Virtual ISL Dictionary',
       theme: ThemeData.light(),
       home: DemoPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -29,9 +30,8 @@ class _DemoPageState extends State<DemoPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            MaterialButton(
-              child: Text("Test Unity"),
-              minWidth: double.infinity,
+            RaisedButton(
+              child: Text("Show Hand Controller"),
               onPressed: () async {
                 Navigator.of(context).push((MaterialPageRoute(
                     builder: (BuildContext context) => UnityTestingWrapper())));

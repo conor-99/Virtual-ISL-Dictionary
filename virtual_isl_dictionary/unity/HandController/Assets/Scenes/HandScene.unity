@@ -516,12 +516,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 4b07a02503fed21428b5a3201a65dab2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.699
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4b07a02503fed21428b5a3201a65dab2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.01199913
+      value: 1.78
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4b07a02503fed21428b5a3201a65dab2,
         type: 3}
@@ -941,6 +941,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1785694620}
   - component: {fileID: 1785694621}
+  - component: {fileID: 1785694622}
   m_Layer: 0
   m_Name: HandModelPivot
   m_TagString: Untagged
@@ -956,7 +957,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785694619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: -5.7}
+  m_LocalPosition: {x: 0, y: 0.7, z: -7.569}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1620075063}
@@ -984,3 +985,35 @@ MonoBehaviour:
   middlePosition: 0
   ringPosition: 0
   pinkyPosition: 0
+  keyframeTransitionTime: 0.204
+  transitionSpeedMultiplier: 1
+--- !u!114 &1785694622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785694619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bad284f9f2d3d45bc2c2d06f3b6c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2112430196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 4b07a02503fed21428b5a3201a65dab2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1620075062}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2112430197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112430196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89bad284f9f2d3d45bc2c2d06f3b6c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

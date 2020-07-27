@@ -1,8 +1,9 @@
 ﻿using System.Linq;
+//using UnityEditor;
 using UnityEngine;
 
 public class HandController : MonoBehaviour {
-    
+
     [Header("Positions: Model")]
     public Vector3 modelPosition;
     
@@ -18,13 +19,19 @@ public class HandController : MonoBehaviour {
     public Ring.Position ringPosition = Ring.Position.ExtensionAdduction;   
     public Pinky.Position pinkyPosition = Pinky.Position.ExtensionAdduction;
     
+    [Header("Playback Controls")]
+    [Range(0.2f, 0.5f)]
+    public float keyframeTransitionTime = 0.35f;
+    [Range(0.25f, 2.0f)]
+    public float transitionSpeedMultiplier = 1.0f;
+
     private Gesture gesture = null;
     private int currentKeyframe = 0;
 
     public void Start() { }
 
     public void Update() {
-        UpdateModel();
+        //UpdateModel();
     }
 
     public void ImportGesture(string filePath) {
@@ -111,6 +118,26 @@ public class HandController : MonoBehaviour {
         UpdatePinky(Pinky.GetResetPosition());
         UpdateHand(Hand.GetResetPosition());
         UpdateForearm(Forearm.GetResetPosition());
+    }
+
+    public void Play() {
+
+        /*if (gesture == null)
+            return;
+        
+        currentKeyframe = 0;
+        SetPositionsFromCurrentKeyframe();
+        UpdateModel();
+
+        AnimationClip clip = new AnimationClip();
+        clip.SetCurve("", typeof(Transform), "localRotation.y", AnimationCurve.EaseInOut(0.0f, 0.7f, keyframeTransitionTime, 180.0f));
+        clip.legacy = true;
+        AssetDatabase.CreateAsset(clip, "Assets/Animations/Test.anim");
+
+        Animation animation = gameObject.GetComponent<Animation>();
+        animation.AddClip(clip, "Assets/Animations/Test.anim");
+        animation.Play("Assets/Animations/Test.anim");*/
+    
     }
 
     private void UpdateOverall(Overall.Position position, Vector3 _modelPosition) {

@@ -9,7 +9,10 @@ public class HandControllerEditor : Editor {
         DrawDefaultInspector();
         HandController handController = (HandController) target;
         
-        GUILayout.Space(8f);
+        if (GUILayout.Button("Play"))
+            handController.Play();
+
+        GUILayout.Space(5f);
         GUILayout.Label("Basic Model Control", EditorStyles.boldLabel);
         
         if (GUILayout.Button("Update Model"))
