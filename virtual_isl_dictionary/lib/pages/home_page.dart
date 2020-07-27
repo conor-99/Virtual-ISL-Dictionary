@@ -17,7 +17,12 @@ class _HomePageState extends State<HomePage> {
     return new Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-      )
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: Colors.red,
+        ),
+      ),
     );
   }
 }
