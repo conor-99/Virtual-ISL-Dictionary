@@ -15,27 +15,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: Stack(
-        children: <Widget>[
-          _showExampleButton(),
-        ],
-      ),
-    );
-  }
-
-  Widget _showExampleButton() {
-    return Positioned(
-      top: 300,
-      left: 100,
-      child: RaisedButton(
-        child: new Text('Go to hand page'),
-        onPressed: () => {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => HandPage()),
-          )
-        },
-      ),
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+      )
     );
   }
 }
