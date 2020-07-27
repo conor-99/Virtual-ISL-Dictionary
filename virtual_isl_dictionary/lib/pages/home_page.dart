@@ -58,31 +58,37 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(Icons.pan_tool, color: Colors.blue, size:80,),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text(
-                "Virtual ISL",
-                style: TextStyle(color: Colors.blue, fontSize: 20),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * .1),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  focusColor: Colors.indigo,
-                  border: OutlineInputBorder(),
-                  labelText: 'Search',
+      body: ListView(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * .20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Icon(Icons.pan_tool, color: Colors.blue, size:80,),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text(
+                    "Virtual ISL",
+                    style: TextStyle(color: Colors.blue, fontSize: 20),
+                  ),
                 ),
-                controller: _textEditingController,
-              ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * .1),
+                  child: TextFormField(
+                    autocorrect: true,
+                    decoration: InputDecoration(
+                      focusColor: Colors.indigo,
+                      border: OutlineInputBorder(),
+                      labelText: 'Search',
+                    ),
+                    controller: _textEditingController,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ]
       ),
     );
   }
