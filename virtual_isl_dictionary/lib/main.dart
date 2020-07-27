@@ -1,45 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:virtual_isl_dictionary/unity_page.dart';
+import 'package:virtual_isl_dictionary/pages/home_page.dart';
 
 void main() {
-  runApp(App());
+  runApp(new App());
 }
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Virtual ISL Dictionary',
-      theme: ThemeData.light(),
-      home: DemoPage(),
+    return new MaterialApp(
       debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class DemoPage extends StatefulWidget {
-  @override
-  _DemoPageState createState() => _DemoPageState();
-}
-
-class _DemoPageState extends State<DemoPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-              child: Text("Show Hand Controller"),
-              onPressed: () async {
-                Navigator.of(context).push((MaterialPageRoute(
-                    builder: (BuildContext context) => UnityTestingWrapper())));
-              },
-            ),
-          ],
-        ),
-      ),
+      theme: ThemeData.light(),
+      home: new HomePage(),
     );
   }
 }
