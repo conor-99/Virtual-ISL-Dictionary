@@ -17,7 +17,7 @@ This project is being developed as part of Microsoft's 2020 Hackathon. You can f
 **Note:** if you plan on making changes to the Unity project you will need to carry out the following steps as well:
 
 1. Install [Blender](https://www.blender.org/download/)
-2. Install [Unity (version 2019.3.5f1)](https://unity3d.com/unity/whats-new/2019.3.5) and *include Android Build Support*
+2. Install [Unity (version 2019.3.5f1)](https://unity3d.com/unity/whats-new/2019.3.5) and include *Android Build Support*
     ![Android Build Support](resources/docs/images/android_build_support.png)
 
 ### Running the Flutter application
