@@ -1,8 +1,9 @@
 ﻿using System.Linq;
-//using UnityEditor;
 using UnityEngine;
 
 public class HandController : MonoBehaviour {
+
+    #region Configuration
 
     [Header("Positions: Model")]
     public Vector3 modelPosition;
@@ -20,10 +21,12 @@ public class HandController : MonoBehaviour {
     public Pinky.Position pinkyPosition = Pinky.Position.ExtensionAdduction;
     
     [Header("Playback Controls")]
-    [Range(0.2f, 0.5f)]
-    public float keyframeTransitionTime = 0.35f;
+    [Range(0.5f, 2.0f)]
+    public float keyframeTransitionTime = 1.0f;
     [Range(0.25f, 2.0f)]
     public float transitionSpeedMultiplier = 1.0f;
+
+    #endregion
 
     private Gesture gesture = null;
     private int currentKeyframe = 0;
@@ -31,6 +34,13 @@ public class HandController : MonoBehaviour {
     public void Start() { }
 
     public void Update() {
+
+        /*gameObject.transform.eulerAngles = new Vector3(
+            gameObject.transform.eulerAngles.x,
+            gameObject.transform.eulerAngles.y + 10.0f,
+            gameObject.transform.eulerAngles.z
+        );*/
+
         //UpdateModel();
     }
 
@@ -41,28 +51,6 @@ public class HandController : MonoBehaviour {
 
         SetPositionsFromCurrentKeyframe();
         UpdateModel();
-
-    }
-
-    private void SetPositionsFromCurrentKeyframe() {
-
-        if (gesture == null)
-            return;
-
-        if ((currentKeyframe < 0) || (currentKeyframe >= gesture.keyframes.Length))
-            return;
-
-        Keyframe keyframe = gesture.keyframes[currentKeyframe];
-
-        modelPosition = new Vector3(keyframe.modelPosition.x, keyframe.modelPosition.y, keyframe.modelPosition.z);
-        overallPosition = (Overall.Position) keyframe.overall;
-        thumbPosition = (Thumb.Position) keyframe.thumb;
-        indexPosition = (Index.Position) keyframe.index;
-        middlePosition = (Middle.Position) keyframe.middle;
-        ringPosition = (Ring.Position) keyframe.ring;
-        pinkyPosition = (Pinky.Position) keyframe.pinky;
-        handPosition = (Hand.Position) keyframe.hand;
-        forearmPosition = (Forearm.Position) keyframe.forearm;
 
     }
 
@@ -122,7 +110,7 @@ public class HandController : MonoBehaviour {
 
     public void Play() {
 
-        /*if (gesture == null)
+        if (gesture == null)
             return;
         
         currentKeyframe = 0;
@@ -130,15 +118,43 @@ public class HandController : MonoBehaviour {
         UpdateModel();
 
         AnimationClip clip = new AnimationClip();
-        clip.SetCurve("", typeof(Transform), "localRotation.y", AnimationCurve.EaseInOut(0.0f, 0.7f, keyframeTransitionTime, 180.0f));
+        clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(0.0f, 270.0f, 1.0f, 270.0f));
+        clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(0.0f, 90.0f, 1.0f, 90.0f));
+        clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(0.0f, 90.0f, 1.0f, 450.0f));
         clip.legacy = true;
-        AssetDatabase.CreateAsset(clip, "Assets/Animations/Test.anim");
-
+        
         Animation animation = gameObject.GetComponent<Animation>();
-        animation.AddClip(clip, "Assets/Animations/Test.anim");
-        animation.Play("Assets/Animations/Test.anim");*/
+        //Animation animation = GameObject.Find("HandModel").GetComponent<Animation>();
+        animation.AddClip(clip, "Example");
+        animation.Play("Example");
+
+        //animation.PlayQueued("Example");
     
     }
+
+    private void SetPositionsFromCurrentKeyframe() {
+
+        if (gesture == null)
+            return;
+
+        if ((currentKeyframe < 0) || (currentKeyframe >= gesture.keyframes.Length))
+            return;
+
+        Keyframe keyframe = gesture.keyframes[currentKeyframe];
+
+        modelPosition = new Vector3(keyframe.modelPosition.x, keyframe.modelPosition.y, keyframe.modelPosition.z);
+        overallPosition = (Overall.Position) keyframe.overall;
+        thumbPosition = (Thumb.Position) keyframe.thumb;
+        indexPosition = (Index.Position) keyframe.index;
+        middlePosition = (Middle.Position) keyframe.middle;
+        ringPosition = (Ring.Position) keyframe.ring;
+        pinkyPosition = (Pinky.Position) keyframe.pinky;
+        handPosition = (Hand.Position) keyframe.hand;
+        forearmPosition = (Forearm.Position) keyframe.forearm;
+
+    }
+
+    #region Update Components
 
     private void UpdateOverall(Overall.Position position, Vector3 _modelPosition) {
 
@@ -256,5 +272,7 @@ public class HandController : MonoBehaviour {
         }
 
     }
+
+    #endregion
 
 }

@@ -7,27 +7,27 @@
                 "y": 0.7,
                 "z": -5.7
             },
-            "overall": 2,
+            "overall": 0,
             "thumb": 0,
             "index": 0,
             "middle": 0,
             "ring": 0,
-            "pinky": 4,
+            "pinky": 0,
             "hand": 0,
             "forearm": 0
         },
         {
             "modelPosition": {
                 "x": 0.0,
-                "y": 0.0,
+                "y": 0.7,
                 "z": -5.7
             },
-            "overall": 0,
+            "overall": 2,
             "thumb": 0,
             "index": 0,
             "middle": 0,
             "ring": 0,
-            "pinky": 2,
+            "pinky": 0,
             "hand": 0,
             "forearm": 0
         }

@@ -9,23 +9,23 @@ public class Overall : MonoBehaviour {
     private static string modelName = "HandModelPivot";
 
     private static Dictionary<Joint, string> jointNames = new Dictionary<Joint, string>() {
-        { Joint.OverallRotation, "HandModel" }
+        { Joint.OverallRotation, "HandModelPivot" }
     };
 
     private static Dictionary<Position, Dictionary<Joint, Vector3>> rotations = new Dictionary<Position, Dictionary<Joint, Vector3>>() {
         {
             Position.Anterior, new Dictionary<Joint, Vector3>() {
-                { Joint.OverallRotation, new Vector3(270.0f, 180.0f, 0.0f) }
+                { Joint.OverallRotation, new Vector3(270.0f, 90.0f, 90.0f) }
             }
         },
         {
             Position.Posterior, new Dictionary<Joint, Vector3>() {
-                { Joint.OverallRotation, new Vector3(270.0f, 0.0f, 0.0f) }
+                { Joint.OverallRotation, new Vector3(270.0f, 90.0f, 270.0f) }
             }
         },
         {
             Position.Left, new Dictionary<Joint, Vector3>() {
-                { Joint.OverallRotation, new Vector3(270.0f, 270.0f, 0.0f) }
+                { Joint.OverallRotation, new Vector3(270.0f, 90.0f, 180.0f) }
             }
         },
         {

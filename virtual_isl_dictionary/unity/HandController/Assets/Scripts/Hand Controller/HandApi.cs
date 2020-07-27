@@ -4,21 +4,8 @@ using UnityEngine;
 public class HandApi : MonoBehaviour
 {
 
-    public void Rotate(String message)
-    {
-
-        float yRotation = float.Parse(message);
-
-        gameObject.transform.eulerAngles = new Vector3(
-            gameObject.transform.eulerAngles.x,
-            yRotation,
-            gameObject.transform.eulerAngles.z
-        );
-
-    }
-
     public void ApiShow(String name) {
-
+        
     }
     
     public void ApiPlay() {
@@ -45,8 +32,8 @@ public class HandApi : MonoBehaviour
 
     }
 
-    public void ApiSpeed(String speed) {
-        
+    public void ApiSpeed(String speedStr) {
+        float speed = float.Parse(speedStr);
     }
 
 }
