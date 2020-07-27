@@ -8,6 +8,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController _textEditingController = new TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -52,6 +54,32 @@ class _HomePageState extends State<HomePage> {
               leading: Icon(Icons.settings, color: Colors.blue,),
               title: Text("Settings", style: TextStyle(color: Colors.blue),),
               onTap: () {},
+            ),
+          ],
+        ),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(Icons.pan_tool, color: Colors.blue, size:80,),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text(
+                "Virtual ISL",
+                style: TextStyle(color: Colors.blue, fontSize: 20),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * .1),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  focusColor: Colors.indigo,
+                  border: OutlineInputBorder(),
+                  labelText: 'Search',
+                ),
+                controller: _textEditingController,
+              ),
             ),
           ],
         ),
