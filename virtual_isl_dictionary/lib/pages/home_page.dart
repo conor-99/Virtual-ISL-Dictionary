@@ -25,10 +25,34 @@ class _HomePageState extends State<HomePage> {
             Container(
               height: 93,
               color: Colors.blue,
-              child: Center(
-                child:Text("MENU")
+              child: SafeArea(
+                child: Center(
+                  child:Text(
+                    "Menu",
+                    style: TextStyle(color: Colors.white, fontSize: 20),)
+                ),
               ),
-            )
+            ),
+            ListTile(
+              leading: Icon(Icons.bookmark, color: Colors.blue,),
+              title: Text("Bookmarks", style: TextStyle(color: Colors.blue),),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.explore, color: Colors.blue,),
+              title: Text("Explore", style: TextStyle(color: Colors.blue),),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.school, color: Colors.blue,),
+              title: Text("Learn", style: TextStyle(color: Colors.blue),),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.settings, color: Colors.blue,),
+              title: Text("Settings", style: TextStyle(color: Colors.blue),),
+              onTap: () {},
+            ),
           ],
         ),
       ),
