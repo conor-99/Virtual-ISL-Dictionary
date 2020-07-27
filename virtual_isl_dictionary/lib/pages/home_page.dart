@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:virtual_isl_dictionary/main.dart';
 import 'package:virtual_isl_dictionary/pages/hand_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,8 +20,16 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blue,
       ),
       drawer: Drawer(
-        child: Container(
-          color: Colors.red,
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 93,
+              color: Colors.blue,
+              child: Center(
+                child:Text("MENU")
+              ),
+            )
+          ],
         ),
       ),
     );
