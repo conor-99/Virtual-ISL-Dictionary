@@ -49,6 +49,14 @@ class UnityApi {
 
     _postMessage('ApiSpeed', speed.toString());
   }
+  
+  void setRotationSpeed(String speed) {
+    _controller.postMessage(
+      'HandModel',
+      'Rotate',
+      speed,
+    );
+  }
 
   void _postMessage(String method, [String parameter = '']) {
     _controller.postMessage(

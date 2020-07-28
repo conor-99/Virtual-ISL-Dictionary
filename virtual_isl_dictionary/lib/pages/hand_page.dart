@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:virtual_isl_dictionary/services/unity_api.dart';
@@ -10,6 +11,8 @@ class HandPage extends StatefulWidget {
 }
 
 class _HandPageState extends State<HandPage> {
+  UnityWidgetController _unityWidgetController;
+  double sliderValue = -180;
   String searchParameter;
   UnityApi _apiController;
 
@@ -25,15 +28,55 @@ class _HandPageState extends State<HandPage> {
     return new Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[200],
-        title: Text(this.searchParameter, style: TextStyle(color: Colors.white),),
+        title: Text(
+          this.searchParameter, style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
-      body: Stack(
+      body: Column(
         children: <Widget>[
-          UnityWidget(
-            onUnityViewCreated: (controller) =>
-                {_apiController = new UnityApi(controller)},
-            isARScene: false,
+          Stack(
+            children: <Widget>[
+              Container(
+                child: UnityWidget(
+                  onUnityViewCreated: (controller) =>
+                      {_apiController = new UnityApi(controller)},
+                  isARScene: false,
+                ),
+                height: MediaQuery.of(context).size.height*.7,
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Slider(
+                  min: -360,
+                  max: 0,
+                  value: sliderValue,
+                  onChanged: (value) {
+                    setState(() {
+                      sliderValue = value;
+                    });
+                    _apiController.setRotationSpeed((sliderValue*-1).toString());
+                  }),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.fast_rewind, size: MediaQuery
+                      .of(context)
+                      .size
+                      .width * .1, color: Colors.lightBlue[200],),
+                  Icon(Icons.play_arrow, size: MediaQuery
+                      .of(context)
+                      .size
+                      .width * .1, color: Colors.lightBlue[200],),
+                  Icon(Icons.fast_forward, size: MediaQuery
+                      .of(context)
+                      .size
+                      .width * .1, color: Colors.lightBlue[200],),
+                ],
+              )
+            ],
           )
         ],
       ),
