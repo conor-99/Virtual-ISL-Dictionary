@@ -31,8 +31,8 @@ public class Pinky : MonoBehaviour {
         },
         {
             Position.FlexionFull, new Dictionary<Joint, Vector3>() {
-                { Joint.Metacarpal, new Vector3(7.0f, 88.5f, -12.6f) },
-                { Joint.Proximal, new Vector3(31.3f, -12.6f, -1.0f) },
+                { Joint.Metacarpal, new Vector3(18.9f, 88.5f, -12.6f) },
+                { Joint.Proximal, new Vector3(62.3f, -12.6f, -1.0f) },
                 { Joint.Intermediate, new Vector3(107.5f, 0.0f, 0.0f) },
                 { Joint.Distal, new Vector3(66.0f, 0.0f, 0.0f) }
             }

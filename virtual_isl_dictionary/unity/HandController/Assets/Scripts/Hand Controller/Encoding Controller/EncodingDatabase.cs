@@ -2,7 +2,8 @@ using System.Collections.Generic;
 class EncodingDatabase {
 
     private static Dictionary<string, string> assetPaths = new Dictionary<string, string>(){
-        { "example", "Text/example" }
+        { "example", "Text/example" },
+        { "hello", "Text/hello" }
     };
 
     public static string GetAssetPath(string name) {

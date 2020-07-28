@@ -1,0 +1,35 @@
+{
+    "name": "Hello",
+    "keyframes": [
+        {
+            "modelPosition": {
+                "x": -1.89,
+                "y": 2.27,
+                "z": -5.31
+            },
+            "overall": 0,
+            "thumb": 0,
+            "index": 0,
+            "middle": 0,
+            "ring": 0,
+            "pinky": 0,
+            "hand": 0,
+            "forearm": 1
+        },
+        {
+            "modelPosition": {
+                "x": -1.89,
+                "y": 2.27,
+                "z": -5.31
+            },
+            "overall": 0,
+            "thumb": 1,
+            "index": 1,
+            "middle": 1,
+            "ring": 1,
+            "pinky": 2,
+            "hand": 0,
+            "forearm": 1
+        }
+    ]
+}

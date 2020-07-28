@@ -14,6 +14,11 @@ public class Forearm : MonoBehaviour {
             Position.Standard, new Dictionary<Joint, Vector3>() {
                 { Joint.Elbow, new Vector3(96.2f, 123.2f, -1.46f) }
             }
+        },
+        {
+            Position.RotateClockwise, new Dictionary<Joint, Vector3> {
+                { Joint.Elbow, new Vector3(0.0f, 123.6f, -154.0f) }
+            }
         }
     };
 
@@ -30,7 +35,8 @@ public class Forearm : MonoBehaviour {
     }
 
     public enum Position {
-        Standard = 0
+        Standard = 0,
+        RotateClockwise = 1
     }
 
     public enum Joint {
