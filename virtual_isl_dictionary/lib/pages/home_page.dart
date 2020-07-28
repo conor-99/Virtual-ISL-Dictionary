@@ -6,6 +6,7 @@ import 'package:virtual_isl_dictionary/pages/hand_page.dart';
 import 'package:virtual_isl_dictionary/widgets/CustomSliverAppBar.dart';
 import 'package:virtual_isl_dictionary/widgets/SearchHeader.dart';
 import 'package:virtual_isl_dictionary/widgets/ActionButton.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,11 +18,18 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    // change the status bar color to material color [green-400]
+    FlutterStatusbarcolor.setStatusBarColor(Colors.white);
+    if (useWhiteForeground(Colors.white)) {
+      FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
+    } else {
+      FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+    }
     WidgetsBinding.instance.renderView.automaticSystemUiAdjustment=false;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.white,
-      statusBarColor: Colors.lightBlueAccent,
     ));
+
     super.initState();
   }
 
@@ -77,10 +85,15 @@ class _HomePageState extends State<HomePage> {
         body: CustomScrollView(
           slivers: <Widget>[
             CustomSliverAppBar(
-              child: Text(
-                "Virtual ISL",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
+              child: Column(
+                children: <Widget>[
+                  Image.asset("assets/images/logo.png",scale:5,),
+                  Text(
+                    "GoSign",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.lightBlue[200], fontWeight: FontWeight.bold, fontSize: 30),
+                  ),
+                ],
               )
             ),
             SearchHeader(

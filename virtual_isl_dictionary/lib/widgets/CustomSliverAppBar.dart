@@ -13,8 +13,9 @@ class _CustomSliverAppBarState extends State<CustomSliverAppBar> {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: MediaQuery.of(context).size.height*.5,
-      backgroundColor: Colors.lightBlueAccent,
+      expandedHeight: MediaQuery.of(context).size.height*.3,
+      backgroundColor: Colors.white,
+      iconTheme: IconThemeData(color: Colors.lightBlue[200]),
       floating: false,
       pinned: false,
       flexibleSpace: FlexibleSpaceBar(
