@@ -158,6 +158,10 @@ public class HandController : MonoBehaviour {
         GenerateOverall();
         GenerateForearm();
         GenerateHand();
+        GenerateThumb();
+        GenerateIndex();
+        GenerateMiddle();
+        GenerateRing();
         GeneratePinky();
 
     }
@@ -258,6 +262,158 @@ public class HandController : MonoBehaviour {
 
                 Vector3 thisRot = Hand.GetJointRotationInPosition((Hand.Position) thisFrame.hand, joint);
                 Vector3 nextRot = Hand.GetJointRotationInPosition((Hand.Position) nextFrame.hand, joint);
+
+                float timeStart = i * keyframeTransitionTime;
+                float timeEnd = timeStart + keyframeTransitionTime;
+
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                
+            }
+
+            animation.AddClip(clip, clipName);
+            animations.Add(new AnimationClipTuple(animation, clipName));
+
+        }
+
+    }
+
+    private void GenerateThumb() {
+
+        var joints = Thumb.Joint.GetValues(typeof(Thumb.Joint)).Cast<Thumb.Joint>();
+
+        foreach (var joint in joints) {
+
+            string jointName = Thumb.GetJointName(joint);
+            string clipName = $"Thumb-{jointName}";
+
+            GameObject _gameObject = GameObject.Find(jointName);
+            Animation animation = _gameObject.GetComponent<Animation>();
+            AnimationClip clip = new AnimationClip();
+            clip.legacy = true;
+            
+            for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
+
+                Keyframe thisFrame = gesture.keyframes[i];
+                Keyframe nextFrame = gesture.keyframes[i + 1];
+
+                Vector3 thisRot = Thumb.GetJointRotationInPosition((Thumb.Position) thisFrame.thumb, joint);
+                Vector3 nextRot = Thumb.GetJointRotationInPosition((Thumb.Position) nextFrame.thumb, joint);
+
+                float timeStart = i * keyframeTransitionTime;
+                float timeEnd = timeStart + keyframeTransitionTime;
+
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                
+            }
+
+            animation.AddClip(clip, clipName);
+            animations.Add(new AnimationClipTuple(animation, clipName));
+
+        }
+
+    }
+
+    private void GenerateIndex() {
+
+        var joints = Index.Joint.GetValues(typeof(Index.Joint)).Cast<Index.Joint>();
+
+        foreach (var joint in joints) {
+
+            string jointName = Index.GetJointName(joint);
+            string clipName = $"Index-{jointName}";
+
+            GameObject _gameObject = GameObject.Find(jointName);
+            Animation animation = _gameObject.GetComponent<Animation>();
+            AnimationClip clip = new AnimationClip();
+            clip.legacy = true;
+            
+            for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
+
+                Keyframe thisFrame = gesture.keyframes[i];
+                Keyframe nextFrame = gesture.keyframes[i + 1];
+
+                Vector3 thisRot = Index.GetJointRotationInPosition((Index.Position) thisFrame.index, joint);
+                Vector3 nextRot = Index.GetJointRotationInPosition((Index.Position) nextFrame.index, joint);
+
+                float timeStart = i * keyframeTransitionTime;
+                float timeEnd = timeStart + keyframeTransitionTime;
+
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                
+            }
+
+            animation.AddClip(clip, clipName);
+            animations.Add(new AnimationClipTuple(animation, clipName));
+
+        }
+
+    }
+
+    private void GenerateMiddle() {
+
+        var joints = Middle.Joint.GetValues(typeof(Middle.Joint)).Cast<Middle.Joint>();
+
+        foreach (var joint in joints) {
+
+            string jointName = Middle.GetJointName(joint);
+            string clipName = $"Middle-{jointName}";
+
+            GameObject _gameObject = GameObject.Find(jointName);
+            Animation animation = _gameObject.GetComponent<Animation>();
+            AnimationClip clip = new AnimationClip();
+            clip.legacy = true;
+            
+            for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
+
+                Keyframe thisFrame = gesture.keyframes[i];
+                Keyframe nextFrame = gesture.keyframes[i + 1];
+
+                Vector3 thisRot = Middle.GetJointRotationInPosition((Middle.Position) thisFrame.middle, joint);
+                Vector3 nextRot = Middle.GetJointRotationInPosition((Middle.Position) nextFrame.middle, joint);
+
+                float timeStart = i * keyframeTransitionTime;
+                float timeEnd = timeStart + keyframeTransitionTime;
+
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                
+            }
+
+            animation.AddClip(clip, clipName);
+            animations.Add(new AnimationClipTuple(animation, clipName));
+
+        }
+
+    }
+
+    private void GenerateRing() {
+
+        var joints = Ring.Joint.GetValues(typeof(Ring.Joint)).Cast<Ring.Joint>();
+
+        foreach (var joint in joints) {
+
+            string jointName = Ring.GetJointName(joint);
+            string clipName = $"Ring-{jointName}";
+
+            GameObject _gameObject = GameObject.Find(jointName);
+            Animation animation = _gameObject.GetComponent<Animation>();
+            AnimationClip clip = new AnimationClip();
+            clip.legacy = true;
+            
+            for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
+
+                Keyframe thisFrame = gesture.keyframes[i];
+                Keyframe nextFrame = gesture.keyframes[i + 1];
+
+                Vector3 thisRot = Ring.GetJointRotationInPosition((Ring.Position) thisFrame.ring, joint);
+                Vector3 nextRot = Ring.GetJointRotationInPosition((Ring.Position) nextFrame.ring, joint);
 
                 float timeStart = i * keyframeTransitionTime;
                 float timeEnd = timeStart + keyframeTransitionTime;
