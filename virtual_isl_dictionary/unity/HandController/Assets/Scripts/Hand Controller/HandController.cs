@@ -35,9 +35,6 @@ public class HandController : MonoBehaviour {
 
     public void Start() {
 
-        keyframeTransitionTime = 1.0f;
-        transitionSpeedMultiplier = 1.0f;
-
         gesture = null;
         currentKeyframe = 0;
         animations = new List<AnimationClipTuple>();
@@ -119,6 +116,9 @@ public class HandController : MonoBehaviour {
 
     public void Play() {
 
+        if (animations == null)
+            return;
+        
         foreach (AnimationClipTuple animation in animations) {
             animation.animation.Stop(animation.clipName);
             animation.animation[animation.clipName].speed = transitionSpeedMultiplier;
