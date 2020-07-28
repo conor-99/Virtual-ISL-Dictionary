@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:virtual_isl_dictionary/services/unity_api.dart';
 import 'package:virtual_isl_dictionary/widgets/RotateWidget.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:flutter/services.dart';
 
 class HandPage extends StatefulWidget {
   String searchParameter;
@@ -16,6 +18,8 @@ class _HandPageState extends State<HandPage> {
   double sliderValue = -180;
   String searchParameter;
   UnityApi _apiController;
+
+  IconData playPauseIcon = Icons.play_arrow;
 
 
   _HandPageState(this.searchParameter);
@@ -46,6 +50,7 @@ class _HandPageState extends State<HandPage> {
                   {
                     setState(() {
                       _apiController = new UnityApi(controller);
+                      _apiController.show(searchParameter);
                     });
                   },
                   isARScene: false,
@@ -63,11 +68,11 @@ class _HandPageState extends State<HandPage> {
                   max: 0,
                   width: rotateWidgetWidth,
                   apiController: _apiController,
-                ): null,
+                ): Container(),
               )
             ],
           ),
-          Column(
+          _apiController != null ? Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -77,14 +82,33 @@ class _HandPageState extends State<HandPage> {
                   Icon(Icons.replay, size: MediaQuery
                       .of(context)
                       .size
-                      .width * .1, color: Colors.lightBlue[200],),
-                  Icon(Icons.play_arrow, size: MediaQuery
+                      .width * .08, color: Colors.lightBlue[200],),
+                  Padding(padding: EdgeInsets.symmetric(horizontal: 10),),
+                  GestureDetector(
+                      child: Icon(playPauseIcon,
+                        color: Colors.lightBlue[200],
+                        size: MediaQuery.of(context).size.width * .15,
+                      ),
+                    onTap: () {
+                      setState(() {
+                        if(playPauseIcon == Icons.play_arrow) {
+                          playPauseIcon = Icons.pause;
+                          _apiController.play();
+                        } else {
+                          playPauseIcon = Icons.play_arrow;
+                          _apiController.pause();
+                        }
+                      });
+                    },
+                  ),
+                  Padding(padding: EdgeInsets.symmetric(horizontal: 10),),
+                  Icon(Icons.repeat, size: MediaQuery
                       .of(context)
                       .size
-                      .width * .1, color: Colors.lightBlue[200],),
+                      .width * .08, color: Colors.lightBlue[200],),
                 ],
               ),
-              _apiController != null ? RotateWidgetSlider(
+              RotateWidgetSlider(
                 type: "playback",
                 icon: Icons.fast_forward,
                 title: "Playback Speed",
@@ -94,23 +118,24 @@ class _HandPageState extends State<HandPage> {
                 apiController: _apiController,
                 min: 0.25,
                 max: 2,
-              ): Container(),
+              ),
             ],
-          )
+          ) : Container(),
         ],
       )
     );
   }
 
-  play() {
+  playPause() {
+    print("what");
 
   }
 
-  fastForward() {
+  repeat(BuildContext context) {
 
   }
 
-  rewind() {
+  replay(BuildContext context) {
 
   }
 }
