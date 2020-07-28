@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Hand Controller\Animations\AnimationClipTuple.cs" />
      <Compile Include="Assets\Scripts\Hand Controller\Encoding Controller\EncodingController.cs" />
+     <Compile Include="Assets\Scripts\Hand Controller\Encoding Controller\EncodingDatabase.cs" />
      <Compile Include="Assets\Scripts\Hand Controller\Encoding Controller\Gesture.cs" />
      <Compile Include="Assets\Scripts\Hand Controller\Encoding Controller\Keyframe.cs" />
      <Compile Include="Assets\Scripts\Hand Controller\Encoding Controller\Point.cs" />
