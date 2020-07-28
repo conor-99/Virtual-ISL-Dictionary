@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:virtual_isl_dictionary/services/unity_api.dart';
 import 'package:virtual_isl_dictionary/widgets/RotateWidget.dart';
-import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import 'package:flutter/services.dart';
 
 class HandPage extends StatefulWidget {
   String searchParameter;
