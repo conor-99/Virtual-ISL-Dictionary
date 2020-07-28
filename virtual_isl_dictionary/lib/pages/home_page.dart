@@ -6,6 +6,7 @@ import 'package:virtual_isl_dictionary/pages/hand_page.dart';
 import 'package:virtual_isl_dictionary/widgets/CustomSliverAppBar.dart';
 import 'package:virtual_isl_dictionary/widgets/SearchHeader.dart';
 import 'package:virtual_isl_dictionary/widgets/ActionButton.dart';
+import 'package:virtual_isl_dictionary/widgets/DailySuggestion.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 class HomePage extends StatefulWidget {
@@ -124,6 +125,8 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: <Widget>[
                     Padding(padding: EdgeInsets.symmetric(vertical: 15),),
+                    DailySuggestion(),
+                    Padding(padding: EdgeInsets.symmetric(vertical: 10),),
                     ActionButton(
                       topColor: Color(0xff64dd17),
                       bottomColor: Color(0xff64dd17),
