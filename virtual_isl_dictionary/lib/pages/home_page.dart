@@ -1,6 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:virtual_isl_dictionary/main.dart';
 import 'package:virtual_isl_dictionary/pages/hand_page.dart';
+import 'package:virtual_isl_dictionary/widgets/CustomSliverAppBar.dart';
+import 'package:virtual_isl_dictionary/widgets/SearchHeader.dart';
+import 'package:virtual_isl_dictionary/widgets/ActionButton.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,83 +17,151 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    WidgetsBinding.instance.renderView.automaticSystemUiAdjustment=false;
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.white,
+      statusBarColor: Colors.lightBlueAccent,
+    ));
     super.initState();
   }
 
   @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-      ),
-      drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 93,
-              color: Colors.blue,
-              child: SafeArea(
-                child: Center(
-                  child:Text(
-                    "Menu",
-                    style: TextStyle(color: Colors.white, fontSize: 20),)
+    return SafeArea(
+      child: new Scaffold(
+        drawer: Drawer(
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: MediaQuery.of(context).size.height*.2,
+                color: Colors.lightBlueAccent,
+                child: SafeArea(
+                  child: Center(
+                    child:Text(
+                      "Menu",
+                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),)
+                  ),
                 ),
               ),
+              ListTile(
+                leading: Icon(Icons.bookmark, color: Colors.blue,),
+                title: Text("Bookmarks", style: TextStyle(color: Colors.blue),),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.explore, color: Colors.blue,),
+                title: Text("Explore", style: TextStyle(color: Colors.blue),),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.school, color: Colors.blue,),
+                title: Text("Learn", style: TextStyle(color: Colors.blue),),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.settings, color: Colors.blue,),
+                title: Text("Settings", style: TextStyle(color: Colors.blue),),
+                onTap: () {},
+              ),
+            ],
+          ),
+        ),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            CustomSliverAppBar(
+              child: Text(
+                "Virtual ISL",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30),
+              )
             ),
-            ListTile(
-              leading: Icon(Icons.bookmark, color: Colors.blue,),
-              title: Text("Bookmarks", style: TextStyle(color: Colors.blue),),
-              onTap: () {},
+            SearchHeader(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*.1, 10, MediaQuery.of(context).size.width*.1, 10),
+                child:  Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.all(Radius.circular(100))
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(8.0,0,0,0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "Search",
+                        border: InputBorder.none,
+                        icon: Icon(Icons.search)
+                      ),
+                    ),
+                  )
+                ),
+              )
             ),
-            ListTile(
-              leading: Icon(Icons.explore, color: Colors.blue,),
-              title: Text("Explore", style: TextStyle(color: Colors.blue),),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(Icons.school, color: Colors.blue,),
-              title: Text("Learn", style: TextStyle(color: Colors.blue),),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(Icons.settings, color: Colors.blue,),
-              title: Text("Settings", style: TextStyle(color: Colors.blue),),
-              onTap: () {},
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Column(
+                  children: <Widget>[
+                    Padding(padding: EdgeInsets.symmetric(vertical: 10),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        ActionButton(
+                          topColor: Colors.purpleAccent,
+                          bottomColor: Colors.purple,
+                          extended: false,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.explore, color: Colors.white.withOpacity(0.8),size: 35,),
+                              Padding(padding: EdgeInsets.symmetric(vertical: 5),),
+                              Text("Explore", style: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.bold, fontSize: 20),)
+                            ],
+                          ),
+                        ),
+                        ActionButton(
+                          topColor: Colors.lightBlueAccent,
+                          bottomColor: Colors.blue,
+                          extended: false,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.bookmark, color: Colors.white.withOpacity(0.8),size: 35,),
+                              Padding(padding: EdgeInsets.all(5),),
+                              Text("Bookmarks", style: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.bold, fontSize: 20),)
+                            ],
+                          ),)
+                      ],
+                    ),
+                    Padding(padding: EdgeInsets.symmetric(vertical: 10),),
+                    ActionButton(
+                      topColor: Colors.lightGreenAccent,
+                      bottomColor: Colors.green,
+                      extended: true,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(Icons.school, color: Colors.white.withOpacity(0.8),size: 35,),
+                          Padding(padding: EdgeInsets.all(5),),
+                          Text("Learn", style: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.bold, fontSize: 20),)
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height*.45,
+                    )
+                  ],
+                )
+              ])
             ),
           ],
         ),
-      ),
-      body: ListView(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * .20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Icon(Icons.pan_tool, color: Colors.blue, size:80,),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Text(
-                    "Virtual ISL",
-                    style: TextStyle(color: Colors.blue, fontSize: 20),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * .1),
-                  child: TextFormField(
-                    autocorrect: true,
-                    decoration: InputDecoration(
-                      focusColor: Colors.indigo,
-                      border: OutlineInputBorder(),
-                      labelText: 'Search',
-                    ),
-                    controller: _textEditingController,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ]
       ),
     );
   }
