@@ -36,71 +36,67 @@ class _HandPageState extends State<HandPage> {
           this.searchParameter, style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
-          Column(
+          Stack(
             children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    child: UnityWidget(
-                      onUnityViewCreated: (controller)
-                      {
-                        setState(() {
-                          _apiController = new UnityApi(controller);
-                        });
-                      },
-                      isARScene: false,
-                    ),
-                    height: MediaQuery.of(context).size.height*.7,
-                  ),
-                  Positioned(
-                    left: (MediaQuery.of(context).size.width - rotateWidgetWidth) / 2,
-                    top: MediaQuery.of(context).size.height * .02,
-                    child: _apiController != null ? RotateWidgetSlider(
-                      initialSliderValue: -180,
-                      min: -360,
-                      max: 0,
-                      width: rotateWidgetWidth,
-                      apiController: _apiController,
-                    ): null,
-                  )
-                ],
+              Container(
+                child: UnityWidget(
+                  onUnityViewCreated: (controller)
+                  {
+                    setState(() {
+                      _apiController = new UnityApi(controller);
+                    });
+                  },
+                  isARScene: false,
+                ),
+                height: MediaQuery.of(context).size.height*.7,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(Icons.fast_rewind, size: MediaQuery
-                          .of(context)
-                          .size
-                          .width * .1, color: Colors.lightBlue[200],),
-                      Icon(Icons.play_arrow, size: MediaQuery
-                          .of(context)
-                          .size
-                          .width * .1, color: Colors.lightBlue[200],),
-                      Icon(Icons.fast_forward, size: MediaQuery
-                          .of(context)
-                          .size
-                          .width * .1, color: Colors.lightBlue[200],),
-                    ],
-                  ),
-                  _apiController != null ? RotateWidgetSlider(
-                    title: "Playback Speed",
-                    valueUnit: "x",
-                    initialSliderValue: 1,
-                    width: MediaQuery.of(context).size.width*.9,
-                    apiController: _apiController,
-                    min: 0.25,
-                    max: 2,
-                  ): Container(),
-                ],
+              Positioned(
+                left: (MediaQuery.of(context).size.width - rotateWidgetWidth) / 2,
+                top: MediaQuery.of(context).size.height * .02,
+                child: _apiController != null ? RotateWidgetSlider(
+                  type: "rotation",
+                  icon: Icons.threesixty,
+                  initialSliderValue: -180,
+                  min: -360,
+                  max: 0,
+                  width: rotateWidgetWidth,
+                  apiController: _apiController,
+                ): null,
               )
             ],
           ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.replay, size: MediaQuery
+                      .of(context)
+                      .size
+                      .width * .1, color: Colors.lightBlue[200],),
+                  Icon(Icons.play_arrow, size: MediaQuery
+                      .of(context)
+                      .size
+                      .width * .1, color: Colors.lightBlue[200],),
+                ],
+              ),
+              _apiController != null ? RotateWidgetSlider(
+                type: "playback",
+                icon: Icons.fast_forward,
+                title: "Playback Speed",
+                valueUnit: "x",
+                initialSliderValue: 1,
+                width: MediaQuery.of(context).size.width*.9,
+                apiController: _apiController,
+                min: 0.25,
+                max: 2,
+              ): Container(),
+            ],
+          )
         ],
       )
     );

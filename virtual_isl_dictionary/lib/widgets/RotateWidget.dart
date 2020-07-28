@@ -8,11 +8,12 @@ class RotateWidgetSlider extends StatefulWidget {
   double width;
   UnityApi apiController;
   String valueUnit;
-  Icon icon;
+  IconData icon;
   double initialSliderValue;
-  RotateWidgetSlider({@required this.initialSliderValue, @required this.width, @required this.apiController, this.title, @required this.max, @required this.min, this.valueUnit, this.icon});
+  String type;
+  RotateWidgetSlider({@required this.initialSliderValue, @required this.width, @required this.apiController, this.title, @required this.max, @required this.min, this.valueUnit, @required this.icon, @required this.type});
   @override
-  State<StatefulWidget> createState() => new _RotateWidgetSliderState(this.width, this.apiController, this.title, this.max, this.min, this.valueUnit, this.icon, this.initialSliderValue);
+  State<StatefulWidget> createState() => new _RotateWidgetSliderState(this.width, this.apiController, this.title, this.max, this.min, this.valueUnit, this.icon, this.initialSliderValue, this.type);
 }
 
 class _RotateWidgetSliderState extends State<RotateWidgetSlider> {
@@ -23,8 +24,9 @@ class _RotateWidgetSliderState extends State<RotateWidgetSlider> {
   double min;
   double max;
   String valueUnit;
-  Icon icon;
-  _RotateWidgetSliderState(this.width, this.apiController, this.title, this.max, this.min, this.valueUnit, this.icon, this.sliderValue);
+  IconData icon;
+  String type;
+  _RotateWidgetSliderState(this.width, this.apiController, this.title, this.max, this.min, this.valueUnit, this.icon, this.sliderValue, this.type);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,7 +49,7 @@ class _RotateWidgetSliderState extends State<RotateWidgetSlider> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Icon(Icons.threesixty, color: Colors.grey,),
+                Icon(icon, color: Colors.grey,),
                 Expanded(
                   child: Slider(
                     activeColor: Colors.lightBlue[200],
@@ -58,7 +60,18 @@ class _RotateWidgetSliderState extends State<RotateWidgetSlider> {
                       setState(() {
                         sliderValue = value;
                       });
-                      apiController.setRotationSpeed((sliderValue*-1).toString());
+                      switch (type) {
+                        case "rotation":
+                          apiController.setRotationSpeed((sliderValue*-1).toString());
+                          break;
+
+                        case "playback":
+                          apiController.setSpeed(sliderValue);
+                          break;
+
+                        default:
+                          break;
+                      }
                     }
                   ),
                 ),
