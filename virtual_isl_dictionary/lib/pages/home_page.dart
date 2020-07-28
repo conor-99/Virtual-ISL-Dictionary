@@ -18,18 +18,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // change the status bar color to material color [green-400]
-    FlutterStatusbarcolor.setStatusBarColor(Colors.white);
-    if (useWhiteForeground(Colors.white)) {
-      FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
-    } else {
-      FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
-    }
-    WidgetsBinding.instance.renderView.automaticSystemUiAdjustment=false;
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.white,
-    ));
-
     super.initState();
   }
 
@@ -43,6 +31,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // change the status bar color to material color [green-400]
+    FlutterStatusbarcolor.setStatusBarColor(Colors.white);
+    if (useWhiteForeground(Colors.white)) {
+      FlutterStatusbarcolor.setStatusBarWhiteForeground(true);
+    } else {
+      FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
+    }
+    WidgetsBinding.instance.renderView.automaticSystemUiAdjustment=false;
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.white,
+    ));
     return SafeArea(
       child: new Scaffold(
         drawer: Drawer(
@@ -121,50 +120,81 @@ class _HomePageState extends State<HomePage> {
               delegate: SliverChildListDelegate([
                 Column(
                   children: <Widget>[
+                    Padding(padding: EdgeInsets.symmetric(vertical: 15),),
+                    ActionButton(
+                      topColor: Color(0xff64dd17),
+                      bottomColor: Color(0xff64dd17),
+                      extended: true,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(Icons.school, color: Colors.white,size: 35,),
+                          Padding(padding: EdgeInsets.all(5),),
+                          Text("Learn", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),)
+                        ],
+                      ),
+                    ),
                     Padding(padding: EdgeInsets.symmetric(vertical: 10),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         ActionButton(
-                          topColor: Colors.purpleAccent,
-                          bottomColor: Colors.purple,
+                          topColor: Colors.amberAccent[700],
+                          bottomColor: Colors.amberAccent[700],
                           extended: false,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Icon(Icons.explore, color: Colors.white.withOpacity(0.8),size: 35,),
+                              Icon(Icons.explore, color: Colors.white,size: 35,),
                               Padding(padding: EdgeInsets.symmetric(vertical: 5),),
-                              Text("Explore", style: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.bold, fontSize: 20),)
+                              Text("Explore", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),)
                             ],
                           ),
                         ),
                         ActionButton(
                           topColor: Colors.lightBlueAccent,
-                          bottomColor: Colors.blue,
+                          bottomColor: Colors.lightBlueAccent,
                           extended: false,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Icon(Icons.bookmark, color: Colors.white.withOpacity(0.8),size: 35,),
+                              Icon(Icons.bookmark, color: Colors.white,size: 35,),
                               Padding(padding: EdgeInsets.all(5),),
-                              Text("Bookmarks", style: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.bold, fontSize: 20),)
+                              Text("Bookmarks", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),)
                             ],
                           ),)
                       ],
                     ),
                     Padding(padding: EdgeInsets.symmetric(vertical: 10),),
-                    ActionButton(
-                      topColor: Colors.lightGreenAccent,
-                      bottomColor: Colors.green,
-                      extended: true,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(Icons.school, color: Colors.white.withOpacity(0.8),size: 35,),
-                          Padding(padding: EdgeInsets.all(5),),
-                          Text("Learn", style: TextStyle(color: Colors.white.withOpacity(0.8), fontWeight: FontWeight.bold, fontSize: 20),)
-                        ],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        ActionButton(
+                          topColor: Colors.redAccent,
+                          bottomColor: Colors.redAccent,
+                          extended: false,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.person, color: Colors.white,size: 35,),
+                              Padding(padding: EdgeInsets.symmetric(vertical: 5),),
+                              Text("Profile", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),)
+                            ],
+                          ),
+                        ),
+                        ActionButton(
+                          topColor: Colors.yellow,
+                          bottomColor: Colors.yellow,
+                          extended: false,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.settings, color: Colors.white,size: 35,),
+                              Padding(padding: EdgeInsets.all(5),),
+                              Text("Settings", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),)
+                            ],
+                          ),)
+                      ],
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height*.45,

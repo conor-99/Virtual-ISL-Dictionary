@@ -23,7 +23,7 @@ class _ActionButtonState extends State<ActionButton> {
       width: extended ? MediaQuery.of(context).size.width*.9 : MediaQuery.of(context).size.width*.425,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.all(Radius.circular(10)),
           gradient: LinearGradient(colors: [this.topColor, this.bottomColor],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
