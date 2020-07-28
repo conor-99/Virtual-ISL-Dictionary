@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class HandController : MonoBehaviour {
@@ -28,19 +29,22 @@ public class HandController : MonoBehaviour {
 
     #endregion
 
-    private Gesture gesture = null;
-    private int currentKeyframe = 0;
+    private Gesture gesture;
+    private int currentKeyframe;
+    private List<AnimationClipTuple> animations;
 
-    public void Start() { }
+    public void Start() {
+
+        keyframeTransitionTime = 1.0f;
+        transitionSpeedMultiplier = 1.0f;
+
+        gesture = null;
+        currentKeyframe = 0;
+        animations = new List<AnimationClipTuple>();
+
+    }
 
     public void Update() {
-
-        /*gameObject.transform.eulerAngles = new Vector3(
-            gameObject.transform.eulerAngles.x,
-            gameObject.transform.eulerAngles.y + 10.0f,
-            gameObject.transform.eulerAngles.z
-        );*/
-
         //UpdateModel();
     }
 
@@ -48,6 +52,8 @@ public class HandController : MonoBehaviour {
 
         gesture = EncodingController.Decode(filePath);
         currentKeyframe = 0;
+
+        GenerateAnimations();
 
         SetPositionsFromCurrentKeyframe();
         UpdateModel();
@@ -110,26 +116,14 @@ public class HandController : MonoBehaviour {
 
     public void Play() {
 
-        if (gesture == null)
-            return;
-        
-        currentKeyframe = 0;
-        SetPositionsFromCurrentKeyframe();
-        UpdateModel();
+        foreach (AnimationClipTuple animation in animations) {
+            animation.animation[animation.clipName].speed = transitionSpeedMultiplier;
+            animation.animation.Play(animation.clipName);
+        }
 
-        AnimationClip clip = new AnimationClip();
-        clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(0.0f, 270.0f, 1.0f, 270.0f));
-        clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(0.0f, 90.0f, 1.0f, 90.0f));
-        clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(0.0f, 90.0f, 1.0f, 450.0f));
-        clip.legacy = true;
-        
-        Animation animation = gameObject.GetComponent<Animation>();
-        //Animation animation = GameObject.Find("HandModel").GetComponent<Animation>();
-        animation.AddClip(clip, "Example");
-        animation.Play("Example");
+        if (gesture != null)
+            currentKeyframe = gesture.keyframes.Length - 1;
 
-        //animation.PlayQueued("Example");
-    
     }
 
     private void SetPositionsFromCurrentKeyframe() {
@@ -153,6 +147,173 @@ public class HandController : MonoBehaviour {
         forearmPosition = (Forearm.Position) keyframe.forearm;
 
     }
+
+    private void GenerateAnimations() {
+
+        if (gesture == null || gesture.keyframes.Length == 1)
+            return;
+
+        animations.Clear();
+
+        GenerateOverall();
+        GenerateForearm();
+        GenerateHand();
+        GeneratePinky();
+
+    }
+
+    #region Generate Animations
+
+    private void GenerateOverall() {
+
+        string model = Overall.GetModelName();
+        string clipName = $"Overall-{model}";
+
+        GameObject _gameObject = GameObject.Find(model);
+        Animation animation = _gameObject.GetComponent<Animation>();
+        AnimationClip clip = new AnimationClip();
+        clip.legacy = true;
+
+        for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
+
+            Keyframe thisFrame = gesture.keyframes[i];
+            Keyframe nextFrame = gesture.keyframes[i + 1];
+
+            Vector3 thisRot = Overall.GetJointRotationInPosition((Overall.Position) thisFrame.overall, Overall.Joint.OverallRotation);
+            Vector3 nextRot = Overall.GetJointRotationInPosition((Overall.Position) nextFrame.overall, Overall.Joint.OverallRotation);
+
+            float timeStart = i * keyframeTransitionTime;
+            float timeEnd = timeStart + keyframeTransitionTime;
+
+            clip.SetCurve("", typeof(Transform), "localPosition.x", AnimationCurve.EaseInOut(timeStart, thisFrame.modelPosition.x, timeEnd, nextFrame.modelPosition.x));
+            clip.SetCurve("", typeof(Transform), "localPosition.y", AnimationCurve.EaseInOut(timeStart, thisFrame.modelPosition.y, timeEnd, nextFrame.modelPosition.y));
+            clip.SetCurve("", typeof(Transform), "localPosition.z", AnimationCurve.EaseInOut(timeStart, thisFrame.modelPosition.z, timeEnd, nextFrame.modelPosition.z));
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+
+        }
+        
+        animation.AddClip(clip, clipName);
+        animations.Add(new AnimationClipTuple(animation, clipName));
+
+    }
+
+    private void GenerateForearm() {
+
+        var joints = Forearm.Joint.GetValues(typeof(Forearm.Joint)).Cast<Forearm.Joint>();
+
+        foreach (var joint in joints) {
+
+            string jointName = Forearm.GetJointName(joint);
+            string clipName = $"Forearm-{jointName}";
+
+            GameObject _gameObject = GameObject.Find(jointName);
+            Animation animation = _gameObject.GetComponent<Animation>();
+            AnimationClip clip = new AnimationClip();
+            clip.legacy = true;
+            
+            for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
+
+                Keyframe thisFrame = gesture.keyframes[i];
+                Keyframe nextFrame = gesture.keyframes[i + 1];
+
+                Vector3 thisRot = Forearm.GetJointRotationInPosition((Forearm.Position) thisFrame.forearm, joint);
+                Vector3 nextRot = Forearm.GetJointRotationInPosition((Forearm.Position) nextFrame.forearm, joint);
+
+                float timeStart = i * keyframeTransitionTime;
+                float timeEnd = timeStart + keyframeTransitionTime;
+
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                
+            }
+
+            animation.AddClip(clip, clipName);
+            animations.Add(new AnimationClipTuple(animation, clipName));
+
+        }
+
+    }
+
+    private void GenerateHand() {
+
+        var joints = Hand.Joint.GetValues(typeof(Hand.Joint)).Cast<Hand.Joint>();
+
+        foreach (var joint in joints) {
+
+            string jointName = Hand.GetJointName(joint);
+            string clipName = $"Hand-{jointName}";
+
+            GameObject _gameObject = GameObject.Find(jointName);
+            Animation animation = _gameObject.GetComponent<Animation>();
+            AnimationClip clip = new AnimationClip();
+            clip.legacy = true;
+            
+            for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
+
+                Keyframe thisFrame = gesture.keyframes[i];
+                Keyframe nextFrame = gesture.keyframes[i + 1];
+
+                Vector3 thisRot = Hand.GetJointRotationInPosition((Hand.Position) thisFrame.hand, joint);
+                Vector3 nextRot = Hand.GetJointRotationInPosition((Hand.Position) nextFrame.hand, joint);
+
+                float timeStart = i * keyframeTransitionTime;
+                float timeEnd = timeStart + keyframeTransitionTime;
+
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                
+            }
+
+            animation.AddClip(clip, clipName);
+            animations.Add(new AnimationClipTuple(animation, clipName));
+
+        }
+
+    }
+
+    private void GeneratePinky() {
+
+        var joints = Pinky.Joint.GetValues(typeof(Pinky.Joint)).Cast<Pinky.Joint>();
+
+        foreach (var joint in joints) {
+
+            string jointName = Pinky.GetJointName(joint);
+            string clipName = $"Pinky-{jointName}";
+
+            GameObject _gameObject = GameObject.Find(jointName);
+            Animation animation = _gameObject.GetComponent<Animation>();
+            AnimationClip clip = new AnimationClip();
+            clip.legacy = true;
+            
+            for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
+
+                Keyframe thisFrame = gesture.keyframes[i];
+                Keyframe nextFrame = gesture.keyframes[i + 1];
+
+                Vector3 thisRot = Pinky.GetJointRotationInPosition((Pinky.Position) thisFrame.pinky, joint);
+                Vector3 nextRot = Pinky.GetJointRotationInPosition((Pinky.Position) nextFrame.pinky, joint);
+
+                float timeStart = i * keyframeTransitionTime;
+                float timeEnd = timeStart + keyframeTransitionTime;
+
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
+                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                
+            }
+
+            animation.AddClip(clip, clipName);
+            animations.Add(new AnimationClipTuple(animation, clipName));
+
+        }
+
+    }
+
+    #endregion
 
     #region Update Components
 
