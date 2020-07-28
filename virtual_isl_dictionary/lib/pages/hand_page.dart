@@ -16,6 +16,7 @@ class _HandPageState extends State<HandPage> {
   String searchParameter;
   UnityApi _apiController;
 
+
   _HandPageState(this.searchParameter);
 
   @override
@@ -25,6 +26,8 @@ class _HandPageState extends State<HandPage> {
 
   @override
   Widget build(BuildContext context) {
+    double rotateWidgetWidth = MediaQuery.of(context).size.width*.66;
+
     return new Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[200],
@@ -44,21 +47,54 @@ class _HandPageState extends State<HandPage> {
                 ),
                 height: MediaQuery.of(context).size.height*.7,
               ),
+              Positioned(
+                left: (MediaQuery.of(context).size.width - rotateWidgetWidth) / 2,
+                top: MediaQuery.of(context).size.height * .02,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(5))
+                  ),
+                  width: rotateWidgetWidth,
+                  height: 40,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Padding(padding: EdgeInsets.symmetric(horizontal: 5),),
+                      Icon(Icons.threesixty, color: Colors.grey,),
+                      Expanded(
+                        child: Slider(
+                          min: -360,
+                          max: 0,
+                          value: sliderValue,
+                          onChanged: (value) {
+                            setState(() {
+                              sliderValue = value;
+                            });
+                            _apiController.setRotationSpeed((sliderValue*-1).toString());
+                          }
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Slider(
-                  min: -360,
-                  max: 0,
-                  value: sliderValue,
-                  onChanged: (value) {
-                    setState(() {
-                      sliderValue = value;
-                    });
-                    _apiController.setRotationSpeed((sliderValue*-1).toString());
-                  }),
+                min: -360,
+                max: 0,
+                value: sliderValue,
+                onChanged: (value) {
+                  setState(() {
+                    sliderValue = value;
+                  });
+                  _apiController.setRotationSpeed((sliderValue*-1).toString());
+                }
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -81,5 +117,17 @@ class _HandPageState extends State<HandPage> {
         ],
       ),
     );
+  }
+
+  play() {
+
+  }
+
+  fastForward() {
+
+  }
+
+  rewind() {
+
   }
 }
