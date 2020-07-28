@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:weather/weather.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 
 class DailySuggestion extends StatefulWidget {
   DailySuggestion();
@@ -6,8 +9,21 @@ class DailySuggestion extends StatefulWidget {
   State<StatefulWidget> createState() => new _DailySuggestionState();
 }
 
-class _DailySuggestionState extends State<DailySuggestion> {
+class _DailySuggestionState extends State<DailySuggestion> with TickerProviderStateMixin {
+  String suggestedWord;
   _DailySuggestionState();
+
+  @override
+  void initState() {
+    super.initState();
+    asyncInitState();
+  }
+
+  void asyncInitState() async {
+    this.suggestedWord = await getWeather();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -32,7 +48,7 @@ class _DailySuggestionState extends State<DailySuggestion> {
                 ),
               ),
             ),
-            Padding(
+            suggestedWord != null ? Padding(
               padding: EdgeInsets.all(MediaQuery.of(context).size.width*.04),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,8 +62,8 @@ class _DailySuggestionState extends State<DailySuggestion> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text("sunny", style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),),
-                          Text("Looks like today's forecast is sunny! \nLearn to sign this word", style: TextStyle(fontSize: 10),),
+                          Text(suggestedWord, style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),),
+                          Text("Looks like today's forecast is"+suggestedWord+"! \nLearn to sign this word", style: TextStyle(fontSize: 10),),
                         ],
                       ),
                     ],
@@ -55,11 +71,23 @@ class _DailySuggestionState extends State<DailySuggestion> {
                   Icon(Icons.navigate_next),
                 ],
               ),
-            )
+            ) : Padding(
+              padding: EdgeInsets.all(50),
+              child: SpinKitThreeBounce(
+                color: Colors.white,
+                size: 20,
+                controller: AnimationController(vsync: this, duration: const Duration(milliseconds: 1200)),
+              ),
+            ),
           ],
         )
       )
     );
   }
 
+  getWeather() async{
+    WeatherFactory wf = new WeatherFactory("190a2ef716e0d6ae3f5ab5d747ece459");
+    Weather weather = await wf.currentWeatherByCityName("Dublin");
+    return weather.weatherDescription;
+  }
 }
