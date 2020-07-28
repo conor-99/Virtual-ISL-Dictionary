@@ -45,7 +45,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Editor\AnimationController.cs" />
      <Compile Include="Assets\Scripts\Editor\Build.cs" />
      <Compile Include="Assets\Scripts\Editor\HandControllerEditor.cs" />
      <Compile Include="Assets\Scripts\Editor\XCodePostBuild.cs" />
