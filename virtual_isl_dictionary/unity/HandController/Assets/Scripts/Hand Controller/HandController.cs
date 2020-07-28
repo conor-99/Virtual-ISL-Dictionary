@@ -48,13 +48,16 @@ public class HandController : MonoBehaviour {
         //UpdateModel();
     }
 
-    public void ImportGesture(string filePath) {
+    public void ImportGesture(string path, bool isAsset = false) {
 
-        gesture = EncodingController.Decode(filePath);
+        if (isAsset)
+            gesture = EncodingController.DecodeAsset(path);
+        else
+            gesture = EncodingController.DecodeFile(path);
+        
         currentKeyframe = 0;
-
+        
         GenerateAnimations();
-
         SetPositionsFromCurrentKeyframe();
         UpdateModel();
 
@@ -117,6 +120,7 @@ public class HandController : MonoBehaviour {
     public void Play() {
 
         foreach (AnimationClipTuple animation in animations) {
+            animation.animation.Stop(animation.clipName);
             animation.animation[animation.clipName].speed = transitionSpeedMultiplier;
             animation.animation.Play(animation.clipName);
         }
@@ -124,6 +128,10 @@ public class HandController : MonoBehaviour {
         if (gesture != null)
             currentKeyframe = gesture.keyframes.Length - 1;
 
+    }
+
+    public void SetSpeed(float speed) {
+        transitionSpeedMultiplier = speed;
     }
 
     private void SetPositionsFromCurrentKeyframe() {

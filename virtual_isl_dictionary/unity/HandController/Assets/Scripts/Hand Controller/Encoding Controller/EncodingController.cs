@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class EncodingController : MonoBehaviour {
 
-    public static void Encode(string filePath) {
+    public static void EncodeFile(string filePath) {
         
     }
 
-    public static Gesture Decode(string filePath) {
+    public static Gesture DecodeFile(string filePath) {
 
         Gesture gesture = null;
 
@@ -17,6 +17,15 @@ public class EncodingController : MonoBehaviour {
             string json = stream.ReadToEnd();
             gesture = JsonUtility.FromJson<Gesture>(json);
         }
+
+        return gesture;
+
+    }
+
+    public static Gesture DecodeAsset(string assetPath) {
+
+        TextAsset textAsset = Resources.Load<TextAsset>(assetPath);
+        Gesture gesture = JsonUtility.FromJson<Gesture>(textAsset.text);
 
         return gesture;
 
