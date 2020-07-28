@@ -11,7 +11,6 @@ class _DailySuggestionState extends State<DailySuggestion> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height*.15,
       width: MediaQuery.of(context).size.width*.9,
       child: Container(
         decoration: BoxDecoration(
@@ -48,7 +47,7 @@ class _DailySuggestionState extends State<DailySuggestion> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text("sunny", style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),),
-                          Text("Today is sunny"),
+                          Text("Looks like today's forecast is sunny! \nLearn to sign this word", style: TextStyle(fontSize: 10),),
                         ],
                       ),
                     ],
