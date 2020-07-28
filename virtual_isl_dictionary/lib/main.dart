@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:virtual_isl_dictionary/pages/hand_page.dart';
 import 'package:virtual_isl_dictionary/pages/home_page.dart';
 
 void main() {
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      home: new HomePage(),
+      home: new HandPage(searchParameter: "Apple",),
     );
   }
 }
