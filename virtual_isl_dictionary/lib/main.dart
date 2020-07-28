@@ -12,7 +12,7 @@ class App extends StatelessWidget {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      home: new HandPage(searchParameter: "Apple",),
+      home: new HomePage(),
     );
   }
 }
