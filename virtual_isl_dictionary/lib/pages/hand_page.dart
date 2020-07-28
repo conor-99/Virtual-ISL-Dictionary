@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:virtual_isl_dictionary/services/unity_api.dart';
+import 'package:virtual_isl_dictionary/widgets/RotateWidget.dart';
 
 class HandPage extends StatefulWidget {
   String searchParameter;
@@ -35,87 +36,73 @@ class _HandPageState extends State<HandPage> {
           this.searchParameter, style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Container(
-                child: UnityWidget(
-                  onUnityViewCreated: (controller) =>
-                      {_apiController = new UnityApi(controller)},
-                  isARScene: false,
-                ),
-                height: MediaQuery.of(context).size.height*.7,
-              ),
-              Positioned(
-                left: (MediaQuery.of(context).size.width - rotateWidgetWidth) / 2,
-                top: MediaQuery.of(context).size.height * .02,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(5))
-                  ),
-                  width: rotateWidgetWidth,
-                  height: 40,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Padding(padding: EdgeInsets.symmetric(horizontal: 5),),
-                      Icon(Icons.threesixty, color: Colors.grey,),
-                      Expanded(
-                        child: Slider(
-                          min: -360,
-                          max: 0,
-                          value: sliderValue,
-                          onChanged: (value) {
-                            setState(() {
-                              sliderValue = value;
-                            });
-                            _apiController.setRotationSpeed((sliderValue*-1).toString());
-                          }
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Slider(
-                min: -360,
-                max: 0,
-                value: sliderValue,
-                onChanged: (value) {
-                  setState(() {
-                    sliderValue = value;
-                  });
-                  _apiController.setRotationSpeed((sliderValue*-1).toString());
-                }
+              Stack(
+                children: <Widget>[
+                  Container(
+                    child: UnityWidget(
+                      onUnityViewCreated: (controller)
+                      {
+                        setState(() {
+                          _apiController = new UnityApi(controller);
+                        });
+                      },
+                      isARScene: false,
+                    ),
+                    height: MediaQuery.of(context).size.height*.7,
+                  ),
+                  Positioned(
+                    left: (MediaQuery.of(context).size.width - rotateWidgetWidth) / 2,
+                    top: MediaQuery.of(context).size.height * .02,
+                    child: _apiController != null ? RotateWidgetSlider(
+                      initialSliderValue: -180,
+                      min: -360,
+                      max: 0,
+                      width: rotateWidgetWidth,
+                      apiController: _apiController,
+                    ): null,
+                  )
+                ],
               ),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.fast_rewind, size: MediaQuery
-                      .of(context)
-                      .size
-                      .width * .1, color: Colors.lightBlue[200],),
-                  Icon(Icons.play_arrow, size: MediaQuery
-                      .of(context)
-                      .size
-                      .width * .1, color: Colors.lightBlue[200],),
-                  Icon(Icons.fast_forward, size: MediaQuery
-                      .of(context)
-                      .size
-                      .width * .1, color: Colors.lightBlue[200],),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.fast_rewind, size: MediaQuery
+                          .of(context)
+                          .size
+                          .width * .1, color: Colors.lightBlue[200],),
+                      Icon(Icons.play_arrow, size: MediaQuery
+                          .of(context)
+                          .size
+                          .width * .1, color: Colors.lightBlue[200],),
+                      Icon(Icons.fast_forward, size: MediaQuery
+                          .of(context)
+                          .size
+                          .width * .1, color: Colors.lightBlue[200],),
+                    ],
+                  ),
+                  _apiController != null ? RotateWidgetSlider(
+                    title: "Playback Speed",
+                    valueUnit: "x",
+                    initialSliderValue: 1,
+                    width: MediaQuery.of(context).size.width*.9,
+                    apiController: _apiController,
+                    min: 0.25,
+                    max: 2,
+                  ): Container(),
                 ],
               )
             ],
-          )
+          ),
         ],
-      ),
+      )
     );
   }
 
