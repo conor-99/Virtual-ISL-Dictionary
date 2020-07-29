@@ -33,16 +33,28 @@ class _LearningPageState extends State<LearningPage> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(0,15,0,0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width*.4,
-                  height: MediaQuery.of(context).size.height*.075,
-                  color: Colors.redAccent,
-                  child: Center(
-                    child: Text(
-                      "Daily Suggestion",
-                      style: TextStyle(color: Colors.white),
+                child: Column(
+                  children: <Widget>[
+                    ClipPath(
+                      clipper: DiagonalClipper(),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width*.4,
+                        height: MediaQuery.of(context).size.height*.06,
+                        color: Colors.redAccent,
+                        child: Center(
+                          child: Image.asset(
+                            "assets/images/trophy.png",
+                            color: Colors.amberAccent,
+
+                          )
+                        ),
+                      ),
                     ),
-                  ),
+                    Text(
+                      "Level " + user.level.toString(),
+                      style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold, fontSize: 15),
+                    )
+                  ],
                 ),
               ),
             ],
@@ -101,4 +113,21 @@ class _LearningPageState extends State<LearningPage> {
       )
     );
   }
+}
+
+
+class DiagonalClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(size.width, 0);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.lineTo(size.width*.20, size.height/2);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(DiagonalClipper oldClipper) => false;
 }
