@@ -26,3 +26,9 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/trophy.png
+    - assets/images/ABC.png
+    - assets/images/FoodAndDrink.png
+    - assets/images/numbers.png
+    - assets/images/sports.png
+    - assets/images/vehicles.png
+    - assets/images/pig.png

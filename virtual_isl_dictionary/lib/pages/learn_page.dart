@@ -64,13 +64,13 @@ class _LearningPageState extends State<LearningPage> {
             child: Column(
               children: <Widget>[
                 LearningCategory(
-                  icon: Icons.nature,
+                  icon: "assets/images/ABC.png",
                   title: "Letters",
                   isComplete: true,
                 ),
                 Divider(height: 5, thickness: 2,),
                 LearningCategory(
-                  icon: Icons.nature,
+                  icon: "assets/images/numbers.png",
                   title: "Numbers",
                   isComplete: true,
                 ),
@@ -79,12 +79,12 @@ class _LearningPageState extends State<LearningPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     LearningCategory(
-                      icon: Icons.nature,
+                      icon: "assets/images/vehicles.png",
                       title: "Vehicles",
                       isComplete: false,
                     ),
                     LearningCategory(
-                      icon: Icons.nature,
+                      icon: "assets/images/pig.png",
                       title: "Animals",
                       isComplete: false,
                     ),
@@ -95,12 +95,12 @@ class _LearningPageState extends State<LearningPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     LearningCategory(
-                      icon: Icons.nature,
+                      icon: "assets/images/FoodAndDrink.png",
                       title: "Food & Drink",
                       isComplete: false,
                     ),
                     LearningCategory(
-                      icon: Icons.nature,
+                      icon: "assets/images/sports.png",
                       title: "Sports",
                       isComplete: false,
                     ),
