@@ -51,16 +51,63 @@ class _LearningPageState extends State<LearningPage> {
                           )),
                         ),
                       ),
-                      Text(
-                        "Level " + user.level.toString(),
-                        style: TextStyle(
-                            color: Colors.redAccent,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15),
-                      )
-                    ],
-                  ),
+                    ),
+                    Text(
+                      "Level " + user.level.toString(),
+                      style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold, fontSize: 15),
+                    )
+                  ],
                 ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsets.all(MediaQuery.of(context).size.width*.1),
+            child: Column(
+              children: <Widget>[
+                LearningCategory(
+                  icon: "assets/images/ABC.png",
+                  title: "Letters",
+                  isComplete: true,
+                ),
+                Divider(height: 5, thickness: 2,),
+                LearningCategory(
+                  icon: "assets/images/numbers.png",
+                  title: "Numbers",
+                  isComplete: true,
+                ),
+                Divider(height: 5, thickness: 2,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    LearningCategory(
+                      icon: "assets/images/vehicles.png",
+                      title: "Vehicles",
+                      isComplete: false,
+                    ),
+                    LearningCategory(
+                      icon: "assets/images/pig.png",
+                      title: "Animals",
+                      isComplete: false,
+                    ),
+                  ],
+                ),
+                Divider(height: 5, thickness: 2,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    LearningCategory(
+                      icon: "assets/images/FoodAndDrink.png",
+                      title: "Food & Drink",
+                      isComplete: false,
+                    ),
+                    LearningCategory(
+                      icon: "assets/images/sports.png",
+                      title: "Sports",
+                      isComplete: false,
+                    ),
+                  ],
+                )
               ],
             ),
             Padding(

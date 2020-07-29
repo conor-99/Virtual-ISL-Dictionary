@@ -6,7 +6,7 @@ import 'package:virtual_isl_dictionary/models/User.dart';
 
 class LearningCategory extends StatefulWidget {
   GestureTapCallback onPressed;
-  IconData icon;
+  String icon;
   String title;
   bool isComplete;
   LearningCategory({this.onPressed, this.icon, this.title, this.isComplete});
@@ -17,7 +17,7 @@ class LearningCategory extends StatefulWidget {
 
 class _LearningCategoryState extends State<LearningCategory> {
   GestureTapCallback onPressed;
-  IconData icon;
+  String icon;
   String title;
   bool isComplete = false;
   Random random = new Random();
@@ -37,9 +37,12 @@ class _LearningCategoryState extends State<LearningCategory> {
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   color: isComplete ? Color(0xff64dd17) : Colors.grey[300]),
               child: Center(
-                child: Icon(
-                  icon,
-                  color: Colors.white,
+                child: Padding(
+                  padding: EdgeInsets.all(MediaQuery.of(context).size.width * .05),
+                  child: Image.asset(
+                    icon,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
