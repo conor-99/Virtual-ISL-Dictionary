@@ -100,7 +100,7 @@ class _HandPageState extends State<HandPage> {
                         children: <Widget>[
                           GestureDetector(
                             onTap: () {
-                              _apiController.start();
+                              _apiController.replay();
                             },
                             child: Icon(
                               Icons.replay,
