@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:virtual_isl_dictionary/models/User.dart';
+import 'package:virtual_isl_dictionary/pages/hand_page.dart';
+import 'package:virtual_isl_dictionary/pages/learn_page.dart';
+import 'package:virtual_isl_dictionary/pages/bookmark_page.dart';
 
 class CustomDrawer extends StatefulWidget {
-  CustomDrawer();
+  User user;
+  CustomDrawer({this.user});
   @override
-  State<StatefulWidget> createState() => new _CustomDrawerState();
+  State<StatefulWidget> createState() => new _CustomDrawerState(this.user);
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  _CustomDrawerState();
+  User user;
+  _CustomDrawerState(this.user);
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -37,7 +42,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
               "Bookmarks",
               style: TextStyle(color: Colors.blue),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BookmarkPage(
+                        user: this.user,
+                      )));
+            },
           ),
           ListTile(
             leading: Icon(
@@ -59,7 +71,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
               "Learn",
               style: TextStyle(color: Colors.blue),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => LearningPage(
+                        user: this.user,
+                      )));
+            },
           ),
           ListTile(
             leading: Icon(

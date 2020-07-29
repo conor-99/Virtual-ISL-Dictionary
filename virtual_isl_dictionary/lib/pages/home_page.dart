@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
     ));
     return SafeArea(
       child: new Scaffold(
-        drawer: CustomDrawer(),
+        drawer: CustomDrawer(user: user,),
         body: CustomScrollView(
           slivers: <Widget>[
             CustomSliverAppBar(

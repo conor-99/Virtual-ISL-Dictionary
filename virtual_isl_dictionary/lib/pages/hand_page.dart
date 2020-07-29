@@ -17,7 +17,7 @@ class HandPage extends StatefulWidget {
 class _HandPageState extends State<HandPage> {
   User user;
   UnityWidgetController _unityWidgetController;
-  double sliderValue = -180;
+  double sliderValue = -360;
   String searchParameter;
   UnityApi _apiController;
   IconData bookmark;
@@ -80,7 +80,7 @@ class _HandPageState extends State<HandPage> {
                       ? RotateWidgetSlider(
                           type: "rotation",
                           icon: Icons.threesixty,
-                          initialSliderValue: -180,
+                          initialSliderValue: -360,
                           min: -360,
                           max: 0,
                           width: rotateWidgetWidth,
