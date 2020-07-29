@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:virtual_isl_dictionary/pages/hand_page.dart';
 import 'package:virtual_isl_dictionary/pages/home_page.dart';
 
-import 'User.dart';
+import 'package:virtual_isl_dictionary/models/User.dart';
 
 void main() {
   runApp(new App());
@@ -15,7 +15,9 @@ class App extends StatelessWidget {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light(),
-      home: new HomePage(user: user,),
+      home: new HomePage(
+        user: user,
+      ),
     );
   }
 }
