@@ -21,7 +21,11 @@ class _DailySuggestionState extends State<DailySuggestion> with TickerProviderSt
   }
 
   void asyncInitState() async {
-    this.suggestedWord = await getWeather();
+    String word = await getWeather();
+    setState(() {
+      this.suggestedWord = word;
+    });
+
   }
 
 
@@ -70,7 +74,7 @@ class _DailySuggestionState extends State<DailySuggestion> with TickerProviderSt
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(suggestedWord, style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),),
-                            Text("Looks like today's forecast is"+suggestedWord+"! \nLearn to sign this word", style: TextStyle(fontSize: 10),),
+                            Text("Looks like today's forecast is "+suggestedWord+"! \nLearn to sign this word", style: TextStyle(fontSize: 10),),
                           ],
                         ),
                       ],

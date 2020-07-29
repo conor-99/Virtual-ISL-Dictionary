@@ -108,7 +108,9 @@ class _HomePageState extends State<HomePage> {
                     padding: EdgeInsets.fromLTRB(8.0,0,0,0),
                     child: TextField(
                       onSubmitted: (String value) async {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HandPage(searchParameter: value)));
+                        if(value != "") {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HandPage(searchParameter: value)));
+                        }
                       },
                       decoration: InputDecoration(
                         hintText: "Search",
