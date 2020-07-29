@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:virtual_isl_dictionary/widgets/CustomDrawer.dart';
-
-import '../User.dart';
+import 'package:virtual_isl_dictionary/models/User.dart';
 import 'hand_page.dart';
 
 class BookmarkPage extends StatefulWidget {
@@ -22,20 +21,27 @@ class _BookmarkPageState extends State<BookmarkPage> {
         iconTheme: IconThemeData(color: Colors.lightBlue[200]),
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text("Bookmarks", style: TextStyle(color: Colors.lightBlue[200]),),
+        title: Text(
+          "Bookmarks",
+          style: TextStyle(color: Colors.lightBlue[200]),
+        ),
       ),
-      body: ListView(
-        children: showBookmarks()
-      ),
+      body: ListView(children: showBookmarks()),
     );
   }
 
   showBookmarks() {
     List<ListTile> bookmarks = new List();
-    for(int i = 0; i < user.bookmarks.length; i++) {
+    for (int i = 0; i < user.bookmarks.length; i++) {
       bookmarks.add(ListTile(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HandPage(searchParameter: user.bookmarks[i], user: this.user,)));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HandPage(
+                        searchParameter: user.bookmarks[i],
+                        user: this.user,
+                      )));
         },
         leading: IconButton(
           onPressed: () {
@@ -45,9 +51,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
             Icons.delete,
           ),
         ),
-        title: Text(
-          user.bookmarks[i]
-        ),
+        title: Text(user.bookmarks[i]),
         trailing: Icon(Icons.navigate_next),
       ));
     }

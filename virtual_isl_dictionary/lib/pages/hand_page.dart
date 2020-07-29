@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:virtual_isl_dictionary/services/unity_api.dart';
 import 'package:virtual_isl_dictionary/widgets/RotateWidget.dart';
-
-import '../User.dart';
+import 'package:virtual_isl_dictionary/models/User.dart';
 
 class HandPage extends StatefulWidget {
   User user;
@@ -29,10 +28,9 @@ class _HandPageState extends State<HandPage> {
 
   @override
   void initState() {
-    if(user.bookmarks.contains(searchParameter)) {
+    if (user.bookmarks.contains(searchParameter)) {
       bookmark = Icons.bookmark;
-    }
-    else {
+    } else {
       bookmark = Icons.bookmark_border;
     }
     super.initState();
@@ -45,7 +43,10 @@ class _HandPageState extends State<HandPage> {
     return new Scaffold(
         appBar: AppBar(
           actions: <Widget>[
-            IconButton(icon: Icon(bookmark),onPressed: setBookmark,)
+            IconButton(
+              icon: Icon(bookmark),
+              onPressed: setBookmark,
+            )
           ],
           backgroundColor: Colors.lightBlue[200],
           title: Text(
@@ -157,7 +158,7 @@ class _HandPageState extends State<HandPage> {
   }
 
   setBookmark() {
-    if(bookmark == Icons.bookmark_border) {
+    if (bookmark == Icons.bookmark_border) {
       user.bookmarks.add(searchParameter);
       setState(() {
         bookmark = Icons.bookmark;
