@@ -23,24 +23,14 @@ class UnityApi {
     _postMessage('ApiPause');
   }
 
-  // Go to the start of the animation
-  void start() {
-    _postMessage('ApiStart');
+  // Replay the animation
+  void replay() {
+    _postMessage('ApiReplay');
   }
 
-  // Go to the end of the animation
-  void end() {
-    _postMessage('ApiEnd');
-  }
-
-  // Go to the next keyframe
-  void next() {
-    _postMessage('ApiNext');
-  }
-
-  // Go to the previous keyframe
-  void previous() {
-    _postMessage('ApiPrevious');
+  // Turn looping on or off
+  void setLooping(bool status) {
+    _postMessage('ApiLoop', status.toString());
   }
 
   // Set the relative speed of the animation (0.25x to 2.0x)
@@ -50,12 +40,16 @@ class UnityApi {
     _postMessage('ApiSpeed', speed.toString());
   }
 
-  void setRotationSpeed(String speed) {
-    /*_controller.postMessage(
-      'HandModel',
-      'Rotate',
-      speed,
-    );*/
+  // Rotate the model
+  void setRotation(double degrees) {
+    if (degrees < 0 || degrees > 360) return;
+
+    //_postMessage('ApiRotate', degrees.toString());
+  }
+
+  // Check if the model is playing
+  bool isPlaying() {
+    return true;
   }
 
   void _postMessage(String method, [String parameter = '']) {
