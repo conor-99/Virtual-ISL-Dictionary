@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:virtual_isl_dictionary/widgets/CustomDrawer.dart';
 
@@ -18,6 +20,7 @@ class _LearningCategoryState extends State<LearningCategory> {
   IconData icon;
   String title;
   bool isComplete = false;
+  Random random = new Random();
   _LearningCategoryState(this.onPressed, this.icon, this.title, this.isComplete);
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class _LearningCategoryState extends State<LearningCategory> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: isComplete ? Colors.lime : Colors.grey[300]
+                color: isComplete ? Color(0xff64dd17) : Colors.grey[300]
               ),
               child: Center(
                 child: Icon(
@@ -43,13 +46,20 @@ class _LearningCategoryState extends State<LearningCategory> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
               children: <Widget>[
-                Text(
-                  title,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      title,
+                    ),
+                    isComplete ? Icon(Icons.check_circle, color: Color(0xff64dd17),) : Container()
+                  ],
                 ),
-                isComplete ? Icon(Icons.check_circle, color: Colors.lime,) : Container()
+                isComplete ? Container(): Text(
+                  random.nextInt(100).toString() + "%",
+                ),
               ],
             ),
           ),
