@@ -27,6 +27,9 @@ public class HandController : MonoBehaviour {
     [Range(0.25f, 2.0f)]
     public float transitionSpeedMultiplier = 1.0f;
 
+    [Range(0f, 360f)]
+    public float rotate = 0f;
+
     #endregion
 
     private Gesture gesture;
