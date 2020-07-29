@@ -11,7 +11,7 @@ public class HandControllerEditor : Editor {
         
         if (GUILayout.Button("Play"))
             handController.Play();
-
+        
         GUILayout.Space(5f);
         GUILayout.Label("Basic Model Control", EditorStyles.boldLabel);
         

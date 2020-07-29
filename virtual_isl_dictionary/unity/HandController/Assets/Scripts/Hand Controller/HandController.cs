@@ -38,6 +38,8 @@ public class HandController : MonoBehaviour {
         gesture = null;
         currentKeyframe = 0;
         animations = new List<AnimationClipTuple>();
+        
+        SetSpeed(transitionSpeedMultiplier);
 
     }
 
@@ -120,8 +122,7 @@ public class HandController : MonoBehaviour {
             return;
         
         foreach (AnimationClipTuple animation in animations) {
-            animation.animation.Stop(animation.clipName);
-            animation.animation[animation.clipName].speed = transitionSpeedMultiplier;
+            animation.animation.enabled = true;
             animation.animation.Play(animation.clipName);
         }
 
@@ -130,8 +131,70 @@ public class HandController : MonoBehaviour {
 
     }
 
+    public void Pause() {
+
+        if (animations == null)
+            return;
+        
+        foreach (AnimationClipTuple animation in animations) {
+            animation.animation.enabled = false;
+        }
+
+    }
+
+    public void Replay() {
+
+        if (animations == null)
+            return;
+        
+        foreach (AnimationClipTuple animation in animations) {
+            animation.animation.Stop(animation.clipName);
+        }
+
+        Play();
+
+    }
+
+    public void SetLooping(bool status) {
+
+        if (animations == null)
+            return;
+        
+        foreach (AnimationClipTuple animation in animations) {
+            animation.animation[animation.clipName].wrapMode = status ? WrapMode.Loop : WrapMode.Once;
+        }
+
+    }
+    
     public void SetSpeed(float speed) {
+
         transitionSpeedMultiplier = speed;
+
+        if (animations == null)
+            return;
+        
+        foreach (AnimationClipTuple animation in animations) {
+            animation.animation[animation.clipName].speed = transitionSpeedMultiplier;
+        }
+
+    }
+
+    public void SetRotation() {
+
+    }
+
+    public bool IsPlaying() {
+        
+        if (animations == null)
+            return false;
+        
+        foreach (AnimationClipTuple animation in animations) {
+            if (animation.animation.isPlaying)
+                return true;
+        }
+
+        return false;
+
     }
 
     private void SetPositionsFromCurrentKeyframe() {

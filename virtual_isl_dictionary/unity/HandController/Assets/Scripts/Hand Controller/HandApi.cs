@@ -20,27 +20,27 @@ public class HandApi : MonoBehaviour
     }
 
     public void ApiPause() {
-        // ignore for now
+        gameObject.GetComponent<HandController>().Pause();
     }
 
-    public void ApiStart() {
-        // ignore for now
+    public void ApiReplay() {
+        gameObject.GetComponent<HandController>().Replay();
     }
 
-    public void ApiEnd() {
-        // ignore for now
-    }
-    
-    public void ApiNext() {
-        // ignore for now
-    }
-
-    public void ApiPrevious() {
-        // ignore for now
+    public void ApiLoop(String statusStr) {
+        gameObject.GetComponent<HandController>().SetLooping(bool.Parse(statusStr));
     }
 
     public void ApiSpeed(String speedStr) {
         gameObject.GetComponent<HandController>().SetSpeed(float.Parse(speedStr));
+    }
+
+    public void ApiRotate(String degreesStr) {
+        // to-do
+    }
+
+    public void ApiIsPlaying() {
+
     }
 
 }
