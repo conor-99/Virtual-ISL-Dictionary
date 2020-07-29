@@ -12,6 +12,7 @@ import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 import '../User.dart';
 import 'bookmark_page.dart';
+import 'learn_page.dart';
 
 class HomePage extends StatefulWidget {
   User user;
@@ -103,6 +104,9 @@ class _HomePageState extends State<HomePage> {
                     DailySuggestion(user: user),
                     Padding(padding: EdgeInsets.symmetric(vertical: 10),),
                     ActionButton(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => LearningPage(user: this.user,)));
+                      },
                       topColor: Color(0xff64dd17),
                       bottomColor: Color(0xff64dd17),
                       extended: true,
