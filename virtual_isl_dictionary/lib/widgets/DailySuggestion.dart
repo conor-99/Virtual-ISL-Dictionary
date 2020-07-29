@@ -3,16 +3,20 @@ import 'package:virtual_isl_dictionary/pages/hand_page.dart';
 import 'package:weather/weather.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../User.dart';
+
 
 class DailySuggestion extends StatefulWidget {
-  DailySuggestion();
+  User user;
+  DailySuggestion({this.user});
   @override
-  State<StatefulWidget> createState() => new _DailySuggestionState();
+  State<StatefulWidget> createState() => new _DailySuggestionState(this.user);
 }
 
 class _DailySuggestionState extends State<DailySuggestion> with TickerProviderStateMixin {
+  User user;
   String suggestedWord;
-  _DailySuggestionState();
+  _DailySuggestionState(this.user);
 
   @override
   void initState() {
@@ -34,7 +38,7 @@ class _DailySuggestionState extends State<DailySuggestion> with TickerProviderSt
     return GestureDetector(
       onTap: () {
         if(suggestedWord != null) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => HandPage(searchParameter: suggestedWord)));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => HandPage(searchParameter: suggestedWord, user: this.user,)));
         }
       },
       child: SizedBox(

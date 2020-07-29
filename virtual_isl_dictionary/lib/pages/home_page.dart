@@ -3,19 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:virtual_isl_dictionary/main.dart';
 import 'package:virtual_isl_dictionary/pages/hand_page.dart';
+import 'package:virtual_isl_dictionary/widgets/CustomDrawer.dart';
 import 'package:virtual_isl_dictionary/widgets/CustomSliverAppBar.dart';
 import 'package:virtual_isl_dictionary/widgets/SearchHeader.dart';
 import 'package:virtual_isl_dictionary/widgets/ActionButton.dart';
 import 'package:virtual_isl_dictionary/widgets/DailySuggestion.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
+import '../User.dart';
+import 'bookmark_page.dart';
+
 class HomePage extends StatefulWidget {
+  User user;
+  HomePage({@required this.user});
   @override
-  State<StatefulWidget> createState() => new _HomePageState();
+  State<StatefulWidget> createState() => new _HomePageState(this.user);
 }
 
 class _HomePageState extends State<HomePage> {
+  User user;
   TextEditingController _textEditingController = new TextEditingController();
+
+  _HomePageState(this.user);
 
   @override
   void initState() {
@@ -45,43 +54,7 @@ class _HomePageState extends State<HomePage> {
     ));
     return SafeArea(
       child: new Scaffold(
-        drawer: Drawer(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: MediaQuery.of(context).size.height*.2,
-                color: Colors.lightBlueAccent,
-                child: SafeArea(
-                  child: Center(
-                    child:Text(
-                      "Menu",
-                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),)
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.bookmark, color: Colors.blue,),
-                title: Text("Bookmarks", style: TextStyle(color: Colors.blue),),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.explore, color: Colors.blue,),
-                title: Text("Explore", style: TextStyle(color: Colors.blue),),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.school, color: Colors.blue,),
-                title: Text("Learn", style: TextStyle(color: Colors.blue),),
-                onTap: () {},
-              ),
-              ListTile(
-                leading: Icon(Icons.settings, color: Colors.blue,),
-                title: Text("Settings", style: TextStyle(color: Colors.blue),),
-                onTap: () {},
-              ),
-            ],
-          ),
-        ),
+        drawer: CustomDrawer(),
         body: CustomScrollView(
           slivers: <Widget>[
             CustomSliverAppBar(
@@ -109,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                     child: TextField(
                       onSubmitted: (String value) async {
                         if(value != "") {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HandPage(searchParameter: value)));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HandPage(searchParameter: value, user: this.user,)));
                         }
                       },
                       decoration: InputDecoration(
@@ -127,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: <Widget>[
                     Padding(padding: EdgeInsets.symmetric(vertical: 15),),
-                    DailySuggestion(),
+                    DailySuggestion(user: user),
                     Padding(padding: EdgeInsets.symmetric(vertical: 10),),
                     ActionButton(
                       topColor: Color(0xff64dd17),
@@ -160,6 +133,9 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         ActionButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookmarkPage(user: this.user,)));
+                          },
                           topColor: Colors.lightBlueAccent,
                           bottomColor: Colors.lightBlueAccent,
                           extended: false,
@@ -215,13 +191,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  search() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                HandPage()));
   }
 }

@@ -4,26 +4,37 @@ import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:virtual_isl_dictionary/services/unity_api.dart';
 import 'package:virtual_isl_dictionary/widgets/RotateWidget.dart';
 
+import '../User.dart';
+
 class HandPage extends StatefulWidget {
+  User user;
   String searchParameter;
-  HandPage({this.searchParameter});
+  HandPage({@required this.searchParameter, @required this.user});
   @override
   State<StatefulWidget> createState() =>
-      new _HandPageState(this.searchParameter);
+      new _HandPageState(this.searchParameter, this.user);
 }
 
 class _HandPageState extends State<HandPage> {
+  User user;
   UnityWidgetController _unityWidgetController;
   double sliderValue = -180;
   String searchParameter;
   UnityApi _apiController;
+  IconData bookmark;
 
   IconData playPauseIcon = Icons.play_arrow;
 
-  _HandPageState(this.searchParameter);
+  _HandPageState(this.searchParameter, this.user);
 
   @override
   void initState() {
+    if(user.bookmarks.contains(searchParameter)) {
+      bookmark = Icons.bookmark;
+    }
+    else {
+      bookmark = Icons.bookmark_border;
+    }
     super.initState();
   }
 
@@ -33,6 +44,9 @@ class _HandPageState extends State<HandPage> {
 
     return new Scaffold(
         appBar: AppBar(
+          actions: <Widget>[
+            IconButton(icon: Icon(bookmark),onPressed: setBookmark,)
+          ],
           backgroundColor: Colors.lightBlue[200],
           title: Text(
             this.searchParameter,
@@ -83,10 +97,15 @@ class _HandPageState extends State<HandPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Icon(
-                            Icons.replay,
-                            size: MediaQuery.of(context).size.width * .08,
-                            color: Colors.lightBlue[200],
+                          GestureDetector(
+                            onTap: () {
+                              _apiController.start();
+                            },
+                            child: Icon(
+                              Icons.replay,
+                              size: MediaQuery.of(context).size.width * .08,
+                              color: Colors.lightBlue[200],
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 10),
@@ -135,6 +154,20 @@ class _HandPageState extends State<HandPage> {
                 : Container(),
           ],
         ));
+  }
+
+  setBookmark() {
+    if(bookmark == Icons.bookmark_border) {
+      user.bookmarks.add(searchParameter);
+      setState(() {
+        bookmark = Icons.bookmark;
+      });
+    } else {
+      user.bookmarks.remove(searchParameter);
+      setState(() {
+        bookmark = Icons.bookmark_border;
+      });
+    }
   }
 
   playPause() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:virtual_isl_dictionary/widgets/CustomDrawer.dart';
 
 import '../User.dart';
 
@@ -15,9 +16,12 @@ class _BookmarkPageState extends State<BookmarkPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.lightBlue[200]),
         backgroundColor: Colors.white,
-
+        centerTitle: true,
+        title: Text("Bookmarks", style: TextStyle(color: Colors.lightBlue[200]),),
       ),
     );
   }
