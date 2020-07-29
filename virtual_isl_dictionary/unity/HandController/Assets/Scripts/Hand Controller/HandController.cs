@@ -27,9 +27,6 @@ public class HandController : MonoBehaviour {
     [Range(0.25f, 2.0f)]
     public float transitionSpeedMultiplier = 1.0f;
 
-    [Range(0f, 360f)]
-    public float rotate = 0f;
-
     #endregion
 
     private Gesture gesture;
@@ -125,7 +122,7 @@ public class HandController : MonoBehaviour {
             return;
         
         foreach (AnimationClipTuple animation in animations) {
-            animation.animation.enabled = true;
+            animation.animation[animation.clipName].speed = transitionSpeedMultiplier;
             animation.animation.Play(animation.clipName);
         }
 
@@ -140,7 +137,7 @@ public class HandController : MonoBehaviour {
             return;
         
         foreach (AnimationClipTuple animation in animations) {
-            animation.animation.enabled = false;
+            animation.animation[animation.clipName].speed = 0f;
         }
 
     }
