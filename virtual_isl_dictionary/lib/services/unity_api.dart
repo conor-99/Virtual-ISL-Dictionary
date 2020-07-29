@@ -44,7 +44,7 @@ class UnityApi {
   void setRotation(double degrees) {
     if (degrees < 0 || degrees > 360) return;
 
-    //_postMessage('ApiRotate', degrees.toString());
+    _postMessage('ApiRotate', degrees.toString());
   }
 
   // Check if the model is playing

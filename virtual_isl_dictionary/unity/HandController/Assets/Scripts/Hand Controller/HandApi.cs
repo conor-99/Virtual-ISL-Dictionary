@@ -36,7 +36,7 @@ public class HandApi : MonoBehaviour
     }
 
     public void ApiRotate(String degreesStr) {
-        // to-do
+        gameObject.GetComponent<HandController>().SetRotation(float.Parse(degreesStr));
     }
 
     public void ApiIsPlaying() {

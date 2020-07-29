@@ -179,7 +179,18 @@ public class HandController : MonoBehaviour {
 
     }
 
-    public void SetRotation() {
+    public void SetRotation(float degrees) {
+
+        string modelName = Overall.GetModelName();
+        
+        Vector3 curRotation = Overall.GetJointRotationInPosition(overallPosition, Overall.Joint.OverallRotation);
+        Vector3 newRotation = new Vector3(
+            curRotation.x,
+            curRotation.y + degrees,
+            curRotation.z
+        );
+
+        GameObject.Find(modelName).transform.localEulerAngles = newRotation;
 
     }
 
