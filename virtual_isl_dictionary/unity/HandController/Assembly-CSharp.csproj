@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <CscToolPath>C:\Program Files\Unity\Hub\Editor\2019.3.5f1\Editor\Data\Tools\RoslynScripts</CscToolPath>
-    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C7EEE3C2-52E8-DD6D-CFDF-EC82B92462D4}</ProjectGuid>
+    <ProjectGuid>{c2e3eec7-e852-6ddd-cfdf-ec82b92462d4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -47,14 +45,6 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.5f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.3.5f1\Editor\Data\Managed/UnityEditor.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
      <Compile Include="Assets\Scripts\Hand Controller\Animations\AnimationClipTuple.cs" />
      <Compile Include="Assets\Scripts\Hand Controller\Encoding Controller\EncodingController.cs" />
      <Compile Include="Assets\Scripts\Hand Controller\Encoding Controller\EncodingDatabase.cs" />
@@ -71,32 +61,8 @@
      <Compile Include="Assets\Scripts\Hand Controller\Hand Components\Thumb.cs" />
      <Compile Include="Assets\Scripts\Hand Controller\HandApi.cs" />
      <Compile Include="Assets\Scripts\Hand Controller\HandController.cs" />
- <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/Conor Mac Amhlaoibh/Repositories/Virtual-ISL-Dictionary/virtual_isl_dictionary/unity/HandController/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/Conor Mac Amhlaoibh/Repositories/Virtual-ISL-Dictionary/virtual_isl_dictionary/unity/HandController/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/Conor Mac Amhlaoibh/Repositories/Virtual-ISL-Dictionary/virtual_isl_dictionary/unity/HandController/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/Conor Mac Amhlaoibh/Repositories/Virtual-ISL-Dictionary/virtual_isl_dictionary/unity/HandController/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/Conor Mac Amhlaoibh/Repositories/Virtual-ISL-Dictionary/virtual_isl_dictionary/unity/HandController/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/Conor Mac Amhlaoibh/Repositories/Virtual-ISL-Dictionary/virtual_isl_dictionary/unity/HandController/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/Conor Mac Amhlaoibh/Repositories/Virtual-ISL-Dictionary/virtual_isl_dictionary/unity/HandController/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/Conor Mac Amhlaoibh/Repositories/Virtual-ISL-Dictionary/virtual_isl_dictionary/unity/HandController/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/Conor Mac Amhlaoibh/Repositories/Virtual-ISL-Dictionary/virtual_isl_dictionary/unity/HandController/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <Reference Include="UnityEngine">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -268,6 +234,9 @@
  </Reference>
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.5f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.5f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -624,8 +593,54 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
  </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Unity.Timeline.Editor.csproj">
+      <Project>{ae7103c4-0911-3f20-c8c4-df4dcb5a86ae}</Project>
+      <Name>Unity.Timeline.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VSCode.Editor.csproj">
+      <Project>{6158713c-a287-fb26-a4f3-4937b2dfd768}</Project>
+      <Name>Unity.VSCode.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
+      <Project>{47e29234-94d5-b391-99d5-b9cc14346a9e}</Project>
+      <Name>Unity.TextMeshPro.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{c989f7ae-67d2-6f73-cf1f-12134746c3d2}</Project>
+      <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.csproj">
+      <Project>{3178782a-6533-a78a-9c03-c5dde0f0b4b5}</Project>
+      <Name>Unity.Timeline</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.CollabProxy.Editor.csproj">
+      <Project>{5202c21d-a97a-8bb3-100e-8fe2d8d2842b}</Project>
+      <Name>Unity.CollabProxy.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Rider.Editor.csproj">
+      <Project>{dd719aed-4632-f242-b101-5701fbc9cb8c}</Project>
+      <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{d28b64a5-0473-3b5b-9ef7-2ee1ae96aed5}</Project>
+      <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{a3469d26-3622-fcc2-12e6-79dfe515f1da}</Project>
+      <Name>UnityEditor.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Postprocessing.Editor.csproj">
+      <Project>{ce940e07-ca9b-cf46-23c6-c9c47cf0c2f1}</Project>
+      <Name>Unity.Postprocessing.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Postprocessing.Runtime.csproj">
+      <Project>{05bc14d1-4fcd-d884-08b0-e6c3bdd39082}</Project>
+      <Name>Unity.Postprocessing.Runtime</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
