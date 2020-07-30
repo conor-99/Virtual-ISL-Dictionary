@@ -1,0 +1,170 @@
+{
+    "name": "Test",
+    "keyframes": [
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.7,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 0,
+            "index": 0,
+            "middle": 0,
+            "ring": 0,
+            "pinky": 0,
+            "hand": 0,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.7,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 3,
+            "index": 1,
+            "middle": 1,
+            "ring": 1,
+            "pinky": 2,
+            "hand": 2,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.7,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 3,
+            "index": 1,
+            "middle": 1,
+            "ring": 1,
+            "pinky": 2,
+            "hand": 2,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.7,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 0,
+            "index": 0,
+            "middle": 0,
+            "ring": 0,
+            "pinky": 0,
+            "hand": 0,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.7,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 4,
+            "index": 3,
+            "middle": 3,
+            "ring": 3,
+            "pinky": 8,
+            "hand": 3,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.7,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 4,
+            "index": 3,
+            "middle": 3,
+            "ring": 3,
+            "pinky": 8,
+            "hand": 3,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.7,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 0,
+            "index": 0,
+            "middle": 0,
+            "ring": 0,
+            "pinky": 0,
+            "hand": 0,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.1,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 2,
+            "index": 2,
+            "middle": 2,
+            "ring": 2,
+            "pinky": 7,
+            "hand": 1,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.1,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 2,
+            "index": 2,
+            "middle": 2,
+            "ring": 2,
+            "pinky": 7,
+            "hand": 1,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": -5.7
+            },
+            "overall": 3,
+            "thumb": 2,
+            "index": 2,
+            "middle": 2,
+            "ring": 2,
+            "pinky": 7,
+            "hand": 1,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": -5.7
+            },
+            "overall": 3,
+            "thumb": 2,
+            "index": 2,
+            "middle": 2,
+            "ring": 2,
+            "pinky": 7,
+            "hand": 1,
+            "forearm": 0
+        }
+    ]
+}

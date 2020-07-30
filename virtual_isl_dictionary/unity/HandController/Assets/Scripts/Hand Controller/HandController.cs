@@ -260,6 +260,13 @@ public class HandController : MonoBehaviour {
         AnimationClip clip = new AnimationClip();
         clip.legacy = true;
 
+        AnimationCurve curvePosX = null;
+        AnimationCurve curvePosY = null;
+        AnimationCurve curvePosZ = null;
+        AnimationCurve curveRotX = null;
+        AnimationCurve curveRotY = null;
+        AnimationCurve curveRotZ = null;
+
         for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
 
             Keyframe thisFrame = gesture.keyframes[i];
@@ -271,14 +278,30 @@ public class HandController : MonoBehaviour {
             float timeStart = i * keyframeTransitionTime;
             float timeEnd = timeStart + keyframeTransitionTime;
 
-            clip.SetCurve("", typeof(Transform), "localPosition.x", AnimationCurve.EaseInOut(timeStart, thisFrame.modelPosition.x, timeEnd, nextFrame.modelPosition.x));
-            clip.SetCurve("", typeof(Transform), "localPosition.y", AnimationCurve.EaseInOut(timeStart, thisFrame.modelPosition.y, timeEnd, nextFrame.modelPosition.y));
-            clip.SetCurve("", typeof(Transform), "localPosition.z", AnimationCurve.EaseInOut(timeStart, thisFrame.modelPosition.z, timeEnd, nextFrame.modelPosition.z));
-            clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
-            clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
-            clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+            if (i == 0) {
+                curvePosX = AnimationCurve.EaseInOut(timeStart, thisFrame.modelPosition.x, timeEnd, nextFrame.modelPosition.x);
+                curvePosY = AnimationCurve.EaseInOut(timeStart, thisFrame.modelPosition.y, timeEnd, nextFrame.modelPosition.y);
+                curvePosZ = AnimationCurve.EaseInOut(timeStart, thisFrame.modelPosition.z, timeEnd, nextFrame.modelPosition.z);
+                curveRotX = AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x);
+                curveRotY = AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y);
+                curveRotZ = AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z);
+            } else {
+                curvePosX.AddKey(timeEnd, nextFrame.modelPosition.x);
+                curvePosY.AddKey(timeEnd, nextFrame.modelPosition.y);
+                curvePosZ.AddKey(timeEnd, nextFrame.modelPosition.z);
+                curveRotX.AddKey(timeEnd, nextRot.x);
+                curveRotY.AddKey(timeEnd, nextRot.y);
+                curveRotZ.AddKey(timeEnd, nextRot.z);
+            }
 
         }
+
+        clip.SetCurve("", typeof(Transform), "localPosition.x", curvePosX);
+        clip.SetCurve("", typeof(Transform), "localPosition.y", curvePosY);
+        clip.SetCurve("", typeof(Transform), "localPosition.z", curvePosZ);
+        clip.SetCurve("", typeof(Transform), "localEulerAngles.x", curveRotX);
+        clip.SetCurve("", typeof(Transform), "localEulerAngles.y", curveRotY);
+        clip.SetCurve("", typeof(Transform), "localEulerAngles.z", curveRotZ);
         
         animation.AddClip(clip, clipName);
         animations.Add(new AnimationClipTuple(animation, clipName));
@@ -298,6 +321,10 @@ public class HandController : MonoBehaviour {
             Animation animation = _gameObject.GetComponent<Animation>();
             AnimationClip clip = new AnimationClip();
             clip.legacy = true;
+
+            AnimationCurve curveRotX = null;
+            AnimationCurve curveRotY = null;
+            AnimationCurve curveRotZ = null;
             
             for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
 
@@ -310,11 +337,21 @@ public class HandController : MonoBehaviour {
                 float timeStart = i * keyframeTransitionTime;
                 float timeEnd = timeStart + keyframeTransitionTime;
 
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                if (i == 0) {
+                    curveRotX = AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x);
+                    curveRotY = AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y);
+                    curveRotZ = AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z);
+                } else {
+                    curveRotX.AddKey(timeEnd, nextRot.x);
+                    curveRotY.AddKey(timeEnd, nextRot.y);
+                    curveRotZ.AddKey(timeEnd, nextRot.z);
+                }
                 
             }
+
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.x", curveRotX);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.y", curveRotY);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.z", curveRotZ);
 
             animation.AddClip(clip, clipName);
             animations.Add(new AnimationClipTuple(animation, clipName));
@@ -336,6 +373,10 @@ public class HandController : MonoBehaviour {
             Animation animation = _gameObject.GetComponent<Animation>();
             AnimationClip clip = new AnimationClip();
             clip.legacy = true;
+
+            AnimationCurve curveRotX = null;
+            AnimationCurve curveRotY = null;
+            AnimationCurve curveRotZ = null;
             
             for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
 
@@ -348,11 +389,21 @@ public class HandController : MonoBehaviour {
                 float timeStart = i * keyframeTransitionTime;
                 float timeEnd = timeStart + keyframeTransitionTime;
 
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                if (i == 0) {
+                    curveRotX = AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x);
+                    curveRotY = AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y);
+                    curveRotZ = AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z);
+                } else {
+                    curveRotX.AddKey(timeEnd, nextRot.x);
+                    curveRotY.AddKey(timeEnd, nextRot.y);
+                    curveRotZ.AddKey(timeEnd, nextRot.z);
+                }
                 
             }
+
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.x", curveRotX);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.y", curveRotY);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.z", curveRotZ);
 
             animation.AddClip(clip, clipName);
             animations.Add(new AnimationClipTuple(animation, clipName));
@@ -374,6 +425,10 @@ public class HandController : MonoBehaviour {
             Animation animation = _gameObject.GetComponent<Animation>();
             AnimationClip clip = new AnimationClip();
             clip.legacy = true;
+
+            AnimationCurve curveRotX = null;
+            AnimationCurve curveRotY = null;
+            AnimationCurve curveRotZ = null;
             
             for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
 
@@ -386,11 +441,21 @@ public class HandController : MonoBehaviour {
                 float timeStart = i * keyframeTransitionTime;
                 float timeEnd = timeStart + keyframeTransitionTime;
 
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                if (i == 0) {
+                    curveRotX = AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x);
+                    curveRotY = AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y);
+                    curveRotZ = AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z);
+                } else {
+                    curveRotX.AddKey(timeEnd, nextRot.x);
+                    curveRotY.AddKey(timeEnd, nextRot.y);
+                    curveRotZ.AddKey(timeEnd, nextRot.z);
+                }
                 
             }
+
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.x", curveRotX);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.y", curveRotY);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.z", curveRotZ);
 
             animation.AddClip(clip, clipName);
             animations.Add(new AnimationClipTuple(animation, clipName));
@@ -412,6 +477,10 @@ public class HandController : MonoBehaviour {
             Animation animation = _gameObject.GetComponent<Animation>();
             AnimationClip clip = new AnimationClip();
             clip.legacy = true;
+
+            AnimationCurve curveRotX = null;
+            AnimationCurve curveRotY = null;
+            AnimationCurve curveRotZ = null;
             
             for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
 
@@ -424,11 +493,21 @@ public class HandController : MonoBehaviour {
                 float timeStart = i * keyframeTransitionTime;
                 float timeEnd = timeStart + keyframeTransitionTime;
 
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                if (i == 0) {
+                    curveRotX = AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x);
+                    curveRotY = AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y);
+                    curveRotZ = AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z);
+                } else {
+                    curveRotX.AddKey(timeEnd, nextRot.x);
+                    curveRotY.AddKey(timeEnd, nextRot.y);
+                    curveRotZ.AddKey(timeEnd, nextRot.z);
+                }
                 
             }
+
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.x", curveRotX);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.y", curveRotY);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.z", curveRotZ);
 
             animation.AddClip(clip, clipName);
             animations.Add(new AnimationClipTuple(animation, clipName));
@@ -450,6 +529,10 @@ public class HandController : MonoBehaviour {
             Animation animation = _gameObject.GetComponent<Animation>();
             AnimationClip clip = new AnimationClip();
             clip.legacy = true;
+
+            AnimationCurve curveRotX = null;
+            AnimationCurve curveRotY = null;
+            AnimationCurve curveRotZ = null;
             
             for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
 
@@ -462,11 +545,21 @@ public class HandController : MonoBehaviour {
                 float timeStart = i * keyframeTransitionTime;
                 float timeEnd = timeStart + keyframeTransitionTime;
 
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                if (i == 0) {
+                    curveRotX = AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x);
+                    curveRotY = AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y);
+                    curveRotZ = AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z);
+                } else {
+                    curveRotX.AddKey(timeEnd, nextRot.x);
+                    curveRotY.AddKey(timeEnd, nextRot.y);
+                    curveRotZ.AddKey(timeEnd, nextRot.z);
+                }
                 
             }
+
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.x", curveRotX);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.y", curveRotY);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.z", curveRotZ);
 
             animation.AddClip(clip, clipName);
             animations.Add(new AnimationClipTuple(animation, clipName));
@@ -488,6 +581,10 @@ public class HandController : MonoBehaviour {
             Animation animation = _gameObject.GetComponent<Animation>();
             AnimationClip clip = new AnimationClip();
             clip.legacy = true;
+
+            AnimationCurve curveRotX = null;
+            AnimationCurve curveRotY = null;
+            AnimationCurve curveRotZ = null;
             
             for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
 
@@ -500,11 +597,21 @@ public class HandController : MonoBehaviour {
                 float timeStart = i * keyframeTransitionTime;
                 float timeEnd = timeStart + keyframeTransitionTime;
 
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                if (i == 0) {
+                    curveRotX = AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x);
+                    curveRotY = AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y);
+                    curveRotZ = AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z);
+                } else {
+                    curveRotX.AddKey(timeEnd, nextRot.x);
+                    curveRotY.AddKey(timeEnd, nextRot.y);
+                    curveRotZ.AddKey(timeEnd, nextRot.z);
+                }
                 
             }
+
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.x", curveRotX);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.y", curveRotY);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.z", curveRotZ);
 
             animation.AddClip(clip, clipName);
             animations.Add(new AnimationClipTuple(animation, clipName));
@@ -526,6 +633,10 @@ public class HandController : MonoBehaviour {
             Animation animation = _gameObject.GetComponent<Animation>();
             AnimationClip clip = new AnimationClip();
             clip.legacy = true;
+
+            AnimationCurve curveRotX = null;
+            AnimationCurve curveRotY = null;
+            AnimationCurve curveRotZ = null;
             
             for (int i = 0; i < gesture.keyframes.Length - 1; i++) {
 
@@ -538,11 +649,21 @@ public class HandController : MonoBehaviour {
                 float timeStart = i * keyframeTransitionTime;
                 float timeEnd = timeStart + keyframeTransitionTime;
 
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.x", AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.y", AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y));
-                clip.SetCurve("", typeof(Transform), "localEulerAngles.z", AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z));
+                if (i == 0) {
+                    curveRotX = AnimationCurve.EaseInOut(timeStart, thisRot.x, timeEnd, nextRot.x);
+                    curveRotY = AnimationCurve.EaseInOut(timeStart, thisRot.y, timeEnd, nextRot.y);
+                    curveRotZ = AnimationCurve.EaseInOut(timeStart, thisRot.z, timeEnd, nextRot.z);
+                } else {
+                    curveRotX.AddKey(timeEnd, nextRot.x);
+                    curveRotY.AddKey(timeEnd, nextRot.y);
+                    curveRotZ.AddKey(timeEnd, nextRot.z);
+                }
                 
             }
+
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.x", curveRotX);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.y", curveRotY);
+            clip.SetCurve("", typeof(Transform), "localEulerAngles.z", curveRotZ);
 
             animation.AddClip(clip, clipName);
             animations.Add(new AnimationClipTuple(animation, clipName));
