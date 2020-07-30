@@ -77,6 +77,7 @@ class _CompletedPageState extends State<CompletedPage> {
               textColor: Colors.white,
               color: Color(0xff64dd17),
               onPressed: () {
+                user.levelUp();
                 Navigator.pop(context);
                 Navigator.pop(context);
                 Navigator.pop(context);
