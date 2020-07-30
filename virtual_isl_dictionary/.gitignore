@@ -25,6 +25,7 @@
 **/android/gradlew
 **/android/gradlew.bat
 **/android/local.properties
+**/android/key.properties
 **/android/**/GeneratedPluginRegistrant.java
 lib/generated_plugin_registrant.dart
 app.*.symbols
