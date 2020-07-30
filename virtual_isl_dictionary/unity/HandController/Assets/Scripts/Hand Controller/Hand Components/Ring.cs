@@ -36,6 +36,14 @@ public class Ring : MonoBehaviour {
                 { Joint.Intermediate, new Vector3(113.2f, -2.5f, 2.4f) },
                 { Joint.Distal, new Vector3(82.3f, 0.3f, 3.4f) }
             }
+        },
+        {
+            Position.TempB, new Dictionary<Joint, Vector3>() {
+                { Joint.Metacarpal, new Vector3(4.0f, 87.0f, -6.4f) },
+                { Joint.Proximal, new Vector3(13.1f, 1.4f, 13.5f) },
+                { Joint.Intermediate, new Vector3(2.5f, -2.5f, 2.4f) },
+                { Joint.Distal, new Vector3(2.3f, -9.9f, 3.4f) }
+            }
         }
     };
 
@@ -54,7 +62,8 @@ public class Ring : MonoBehaviour {
     public enum Position {
         ExtensionAdduction = 0,
         FlexionFull = 1,
-        Fist = 2
+        Fist = 2,
+        TempB = 3
     }
 
     public enum Joint {

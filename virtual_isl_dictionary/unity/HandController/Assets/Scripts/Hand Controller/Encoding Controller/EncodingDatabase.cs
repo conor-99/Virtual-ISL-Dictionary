@@ -5,7 +5,8 @@ class EncodingDatabase {
         { "example", "Text/example" },
         { "hello", "Text/hello" },
         { "sunny", "Text/sunny" },
-        { "a", "Text/a" }
+        { "a", "Text/a" },
+        { "b", "Text/b" } 
     };
 
     public static string GetAssetPath(string name) {

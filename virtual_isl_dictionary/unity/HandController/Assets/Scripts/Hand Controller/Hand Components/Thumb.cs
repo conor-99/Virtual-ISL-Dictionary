@@ -48,6 +48,14 @@ public class Thumb : MonoBehaviour {
                 { Joint.Intermediate, new Vector3(26.5f, -2.2f, 15.1f) },
                 { Joint.Distal, new Vector3(15.0f, 18.8f, 16.7f) }
             }
+        },
+        {
+            Position.TempB, new Dictionary<Joint, Vector3>() {
+                { Joint.Metacarpal, new Vector3(3.1f, 90.2f, 4.5f) },
+                { Joint.Proximal, new Vector3(-13.1f, 164.3f, -1.0f) },
+                { Joint.Intermediate, new Vector3(13.8f, 4.1f, 45.4f) },
+                { Joint.Distal, new Vector3(43.8f, -8.1f, 77.6f) }
+            }
         }
     };
 
@@ -67,7 +75,8 @@ public class Thumb : MonoBehaviour {
         ExtensionAdduction = 0,
         ThumbUp = 1,
         Fist = 2,
-        TempA = 3
+        TempA = 3,
+        TempB = 4
     }
 
     public enum Joint {

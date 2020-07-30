@@ -40,6 +40,14 @@ public class Index : MonoBehaviour {
                 { Joint.Intermediate, new Vector3(102.8f, -1.6f, -0.8f) },
                 { Joint.Distal, new Vector3(80.1f, -2.2f, -2.7f) }
             }
+        },
+        {
+            Position.TempB, new Dictionary<Joint, Vector3>() {
+                { Joint.Metacarpal, new Vector3(3.1f, 90.2f, 4.5f) },
+                { Joint.Proximal, new Vector3(17.6f, 4.0f, 0.6f) },
+                { Joint.Intermediate, new Vector3(-1.7f, -1.6f, -0.8f) },
+                { Joint.Distal, new Vector3(3.3f, -2.2f, -2.7f) }
+            }
         }
     };
 
@@ -58,7 +66,8 @@ public class Index : MonoBehaviour {
     public enum Position {
         ExtensionAdduction = 0,
         FlexionFull = 1,
-        Fist = 2
+        Fist = 2,
+        TempB = 3
     }
 
     public enum Joint {

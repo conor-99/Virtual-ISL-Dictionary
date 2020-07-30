@@ -76,6 +76,14 @@ public class Pinky : MonoBehaviour {
                 { Joint.Intermediate, new Vector3(105.1f, 0.0f, 0.0f) },
                 { Joint.Distal, new Vector3(71.4f, 0.0f, 0.0f) }
             }
+        },
+        {
+            Position.TempB, new Dictionary<Joint, Vector3>() {
+                { Joint.Metacarpal, new Vector3(5.3f, 88.5f, -12.6f) },
+                { Joint.Proximal, new Vector3(10.8f, -3.3f, 20.6f) },
+                { Joint.Intermediate, new Vector3(0.0f, 0.0f, 0.0f) },
+                { Joint.Distal, new Vector3(0.0f, 0.0f, 0.0f) }
+            }
         }
     };
 
@@ -99,7 +107,8 @@ public class Pinky : MonoBehaviour {
         FlexionPhalanges = 4,
         FlexionCarpals = 5,
         Opposition = 6,
-        Fist = 7
+        Fist = 7,
+        TempB = 8
     }
 
     public enum Joint {

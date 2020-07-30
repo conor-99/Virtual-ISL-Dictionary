@@ -24,6 +24,11 @@ public class Hand : MonoBehaviour {
             Position.TempA, new Dictionary<Joint, Vector3>() {
                 { Joint.Radiocarpal, new Vector3(6.32f, -1.74f, 32.2f) }
             }
+        },
+        {
+            Position.TempB, new Dictionary<Joint, Vector3>() {
+                { Joint.Radiocarpal, new Vector3(7.4f, -0.6f, 12.0f) }
+            }
         }
     };
 
@@ -42,7 +47,8 @@ public class Hand : MonoBehaviour {
     public enum Position {
         Standard = 0,
         TiltBack = 1,
-        TempA = 2
+        TempA = 2,
+        TempB = 3
     }
 
     public enum Joint {

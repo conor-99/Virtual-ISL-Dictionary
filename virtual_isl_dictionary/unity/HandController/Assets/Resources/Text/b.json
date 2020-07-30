@@ -1,0 +1,35 @@
+{
+    "name": "B",
+    "keyframes": [
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.7,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 0,
+            "index": 0,
+            "middle": 0,
+            "ring": 0,
+            "pinky": 0,
+            "hand": 0,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.7,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 4,
+            "index": 3,
+            "middle": 3,
+            "ring": 3,
+            "pinky": 8,
+            "hand": 3,
+            "forearm": 0
+        }
+    ]
+}
