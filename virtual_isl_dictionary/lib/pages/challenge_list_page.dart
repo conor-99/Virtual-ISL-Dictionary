@@ -29,10 +29,10 @@ class _ChallengeListPageState extends State<ChallengeListPage> {
           style: TextStyle(color: Colors.lightBlue[200]),
         ),
         actions: <Widget>[
-          Padding(
+          !challenge.isComplete() ? Padding(
             padding: const EdgeInsets.all(15),
             child: FlatButton(
-              child: Text("Continue test"),
+              child: challenge.percentageComplete() == 0 ? Text("Start test"): Text("Continue test"),
               color: Color(0xff64dd17),
               textColor: Colors.white,
               onPressed: () {
@@ -47,7 +47,7 @@ class _ChallengeListPageState extends State<ChallengeListPage> {
                         )));
               },
             ),
-          )
+          ) : Container()
         ],
       ),
       body: ListView(children: showList()),
