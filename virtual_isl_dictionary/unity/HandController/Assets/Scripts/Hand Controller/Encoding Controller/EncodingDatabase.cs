@@ -3,7 +3,8 @@ class EncodingDatabase {
 
     private static Dictionary<string, string> assetPaths = new Dictionary<string, string>(){
         { "example", "Text/example" },
-        { "hello", "Text/hello" }
+        { "hello", "Text/hello" },
+        { "sunny", "Text/sunny" }
     };
 
     public static string GetAssetPath(string name) {

@@ -1,0 +1,35 @@
+{
+    "name": "Sunny",
+    "keyframes": [
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 0.1,
+                "z": -5.7
+            },
+            "overall": 0,
+            "thumb": 2,
+            "index": 2,
+            "middle": 2,
+            "ring": 2,
+            "pinky": 7,
+            "hand": 1,
+            "forearm": 0
+        },
+        {
+            "modelPosition": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": -5.7
+            },
+            "overall": 3,
+            "thumb": 2,
+            "index": 2,
+            "middle": 2,
+            "ring": 2,
+            "pinky": 7,
+            "hand": 1,
+            "forearm": 0
+        }
+    ]
+}
