@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SettingPage extends StatelessWidget {
+class SettingPage extends StatefulWidget {
+  var state;
+  @override
+  State<StatefulWidget> createState() => new _SettingPageState();
+}
+
+class _SettingPageState extends State<SettingPage> {
+  var state = ["Irish Sign Language", "English"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +29,7 @@ class SettingPage extends StatelessWidget {
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 )),
-            subtitle: Text("Irish Sign Language",
+            subtitle: Text(state[0],
                 style: TextStyle(
                   fontSize: 13,
                 )),
@@ -30,9 +37,30 @@ class SettingPage extends StatelessWidget {
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  ListTile(title: Text("Irish Sign Language")),
-                  ListTile(title: Text("English Sign Language")),
-                  ListTile(title: Text("Spanish Sign Language"))
+                  ListTile(
+                    title: Text("Irish Sign Language"),
+                    onTap: () {
+                      setState(() {
+                        state[0] = "Irish Sign Language";
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text("English Sign Language"),
+                    onTap: () {
+                      setState(() {
+                        state[0] = "English Sign Language";
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text("Spanish Sign Language"),
+                    onTap: () {
+                      setState(() {
+                        state[0] = "Spanish Sign Language";
+                      });
+                    },
+                  )
                 ],
               )
             ],
@@ -45,16 +73,37 @@ class SettingPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 )),
             subtitle: Text(
-              "English",
+              state[1],
               style: TextStyle(fontSize: 13),
             ),
             trailing: Icon(Icons.navigate_next),
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  ListTile(title: Text("Irish")),
-                  ListTile(title: Text("English")),
-                  ListTile(title: Text("Spanish"))
+                  ListTile(
+                    title: Text("Irish"),
+                    onTap: () {
+                      setState(() {
+                        state[1] = "Irish";
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text("English"),
+                    onTap: () {
+                      setState(() {
+                        state[1] = "English";
+                      });
+                    },
+                  ),
+                  ListTile(
+                    title: Text("Spanish"),
+                    onTap: () {
+                      setState(() {
+                        state[1] = "Spanish";
+                      });
+                    },
+                  )
                 ],
               )
             ],
