@@ -73,7 +73,15 @@ class _HandPageState extends State<HandPage> with TickerProviderStateMixin {
             !isLearning ? IconButton(
               icon: Icon(bookmark),
               onPressed: setBookmark,
-            ) : Container()
+            ) : Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, MediaQuery.of(context).size.width*.06, 0),
+              child: Center(
+                child: Text(
+                  challenge.numberComplete().toString() + "/" + challenge.words.length.toString(),
+                  style: TextStyle(color: colorAnimation.value),
+                ),
+              ),
+            )
           ],
           backgroundColor: isLearning ? Colors.white : Colors.lightBlue[200],
           title: !isLearning ? Text(

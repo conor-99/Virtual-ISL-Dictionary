@@ -5,11 +5,21 @@ class Challenge {
 
   isComplete() {
     for(int i = 0; i < words.length; i++) {
-      if(words[i].containsValue("incomplete")) {
+      if(words[i]["status"] == ("incomplete")) {
         return false;
       }
     }
     return true;
+  }
+
+  numberComplete() {
+    int completeCount = 0;
+    for(int i = 0; i < words.length; i++) {
+      if(words[i].containsValue("complete")) {
+        completeCount++;
+      }
+    }
+    return completeCount;
   }
 
   percentageComplete() {
