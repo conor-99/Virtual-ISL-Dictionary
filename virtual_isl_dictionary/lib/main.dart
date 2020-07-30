@@ -14,7 +14,7 @@ class App extends StatelessWidget {
     words: [
       {
         "word":"A",
-        "status":"complete"
+        "status":"incomplete"
       },
       {
         "word":"B",

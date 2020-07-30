@@ -258,8 +258,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       ActionButton(
-                        topColor: Colors.yellow,
-                        bottomColor: Colors.yellow,
+                        topColor: Colors.purple,
+                        bottomColor: Colors.purple,
                         extended: false,
                         onPressed: () {
                           Navigator.push(
