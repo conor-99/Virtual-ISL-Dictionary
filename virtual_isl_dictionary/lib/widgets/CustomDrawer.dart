@@ -44,8 +44,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
               style: TextStyle(color: Colors.blue),
             ),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfilePage(
+                            user: this.user,
+                          )));
             },
           ),
           ListTile(
