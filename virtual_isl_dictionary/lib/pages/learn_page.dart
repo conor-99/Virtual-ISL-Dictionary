@@ -71,12 +71,6 @@ class _LearningPageState extends State<LearningPage> {
                     children: <Widget>[
                       LearningCategory(
                         icon: "assets/images/numbers.png",
-                        title: "Numbers",
-                        isComplete: true,
-                      ),
-                      Divider(height: 5, thickness: 2,),
-                      LearningCategory(
-                        icon: "assets/images/ABC.png",
                         title: user.challenges[0].title,
                         isComplete: user.challenges[0].isComplete(),
                         percentComplete: user.challenges[0].percentageComplete(),
@@ -95,18 +89,66 @@ class _LearningPageState extends State<LearningPage> {
                         },
                       ),
                       Divider(height: 5, thickness: 2,),
+                      LearningCategory(
+                        icon: "assets/images/ABC.png",
+                        title: user.challenges[1].title,
+                        isComplete: user.challenges[1].isComplete(),
+                        percentComplete: user.challenges[1].percentageComplete(),
+                        onPressed: () {
+                          var nextWord = user.challenges[1].nextWord();
+                          print(nextWord);
+                          if(nextWord != null) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChallengeListPage(
+                                      user: this.user,
+                                      challenge: this.user.challenges[1],
+                                    )));
+                          }
+                        },
+                      ),
+                      Divider(height: 5, thickness: 2,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           LearningCategory(
                             icon: "assets/images/vehicles.png",
-                            title: "Vehicles",
-                            isComplete: false,
+                            title: user.challenges[2].title,
+                            isComplete: user.challenges[2].isComplete(),
+                            percentComplete: user.challenges[2].percentageComplete(),
+                            onPressed: () {
+                              var nextWord = user.challenges[2].nextWord();
+                              print(nextWord);
+                              if(nextWord != null) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ChallengeListPage(
+                                          user: this.user,
+                                          challenge: this.user.challenges[2],
+                                        )));
+                              }
+                            },
                           ),
                           LearningCategory(
                             icon: "assets/images/pig.png",
-                            title: "Animals",
-                            isComplete: false,
+                            title: user.challenges[3].title,
+                            isComplete: user.challenges[3].isComplete(),
+                            percentComplete: user.challenges[3].percentageComplete(),
+                            onPressed: () {
+                              var nextWord = user.challenges[3].nextWord();
+                              print(nextWord);
+                              if(nextWord != null) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ChallengeListPage(
+                                          user: this.user,
+                                          challenge: this.user.challenges[3],
+                                        )));
+                              }
+                            },
                           ),
                         ],
                       ),
@@ -116,13 +158,41 @@ class _LearningPageState extends State<LearningPage> {
                         children: <Widget>[
                           LearningCategory(
                             icon: "assets/images/FoodAndDrink.png",
-                            title: "Food & Drink",
-                            isComplete: false,
+                            title: user.challenges[4].title,
+                            isComplete: user.challenges[4].isComplete(),
+                            percentComplete: user.challenges[4].percentageComplete(),
+                            onPressed: () {
+                              var nextWord = user.challenges[4].nextWord();
+                              print(nextWord);
+                              if(nextWord != null) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ChallengeListPage(
+                                          user: this.user,
+                                          challenge: this.user.challenges[4],
+                                        )));
+                              }
+                            },
                           ),
                           LearningCategory(
                             icon: "assets/images/sports.png",
-                            title: "Sports",
-                            isComplete: false,
+                            title: user.challenges[5].title,
+                            isComplete: user.challenges[5].isComplete(),
+                            percentComplete: user.challenges[5].percentageComplete(),
+                            onPressed: () {
+                              var nextWord = user.challenges[5].nextWord();
+                              print(nextWord);
+                              if(nextWord != null) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ChallengeListPage(
+                                          user: this.user,
+                                          challenge: this.user.challenges[5],
+                                        )));
+                              }
+                            },
                           ),
                         ],
                       )

@@ -43,7 +43,7 @@ class _ChallengeListPageState extends State<ChallengeListPage> {
                           isLearning: true,
                           user: this.user,
                           searchParameter: this.challenge.nextWord(),
-                          challenge: this.user.challenges[0],
+                          challenge: this.challenge,
                         )));
               },
             ),

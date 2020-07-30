@@ -25,8 +25,7 @@ class _DailySuggestionState extends State<DailySuggestion>
   }
 
   void asyncInitState() async {
-    String word = await getWeather();
-    word = "sunny";
+    String word = "sunny";
     setState(() {
       this.suggestedWord = word;
     });

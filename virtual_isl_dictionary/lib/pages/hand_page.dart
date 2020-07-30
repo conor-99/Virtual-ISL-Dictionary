@@ -321,7 +321,7 @@ class _HandPageState extends State<HandPage> with TickerProviderStateMixin {
             context,
             MaterialPageRoute(
                 builder: (context) => CompletedPage(
-                      challenge: this.user.challenges[0],
+                      challenge: this.challenge,
                       user: this.user,
                     )));
       }
@@ -333,7 +333,7 @@ class _HandPageState extends State<HandPage> with TickerProviderStateMixin {
                   isLearning: true,
                   user: this.user,
                   searchParameter: this.challenge.nextWord(),
-                  challenge: this.user.challenges[0],
+                  challenge: this.challenge,
                 )));
       }
     } else {
