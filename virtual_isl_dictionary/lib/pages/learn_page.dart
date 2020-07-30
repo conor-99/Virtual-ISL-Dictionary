@@ -5,6 +5,7 @@ import 'package:virtual_isl_dictionary/widgets/LearningCategory.dart';
 
 import 'package:virtual_isl_dictionary/models/User.dart';
 import 'hand_page.dart';
+import 'package:virtual_isl_dictionary/models/Challenge.dart';
 
 class LearningPage extends StatefulWidget {
   User user;
@@ -68,15 +69,31 @@ class _LearningPageState extends State<LearningPage> {
                   child: Column(
                     children: <Widget>[
                       LearningCategory(
-                        icon: "assets/images/ABC.png",
-                        title: "Letters",
+                        icon: "assets/images/numbers.png",
+                        title: "Numbers",
                         isComplete: true,
                       ),
                       Divider(height: 5, thickness: 2,),
                       LearningCategory(
-                        icon: "assets/images/numbers.png",
-                        title: "Numbers",
-                        isComplete: true,
+                        icon: "assets/images/ABC.png",
+                        title: user.challenges[0].title,
+                        isComplete: user.challenges[0].isComplete(),
+                        percentComplete: user.challenges[0].percentageComplete(),
+                        onPressed: () {
+                          var nextWord = user.challenges[0].nextWord();
+                          print(nextWord);
+                          if(nextWord != null) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HandPage(
+                                      isLearning: true,
+                                      user: this.user,
+                                      searchParameter: nextWord,
+                                      challenge: this.user.challenges[0],
+                                    )));
+                          }
+                        },
                       ),
                       Divider(height: 5, thickness: 2,),
                       Row(
