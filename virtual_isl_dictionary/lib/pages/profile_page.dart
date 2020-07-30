@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:virtual_isl_dictionary/models/User.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
+  User user;
+  ProfilePage({this.user});
+  @override
+  State<StatefulWidget> createState() => new _ProfilePageState(this.user);
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  User user;
+  _ProfilePageState(this.user);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +41,7 @@ class ProfilePage extends StatelessWidget {
                   lineHeight: 20.0,
                   animationDuration: 1800,
                   percent: 0.8,
-                  center: Text("80.0%"),
+                  center: Text("Level " + user.level.toString()),
                   linearStrokeCap: LinearStrokeCap.roundAll,
                   progressColor: Colors.yellow[300],
                 ),
