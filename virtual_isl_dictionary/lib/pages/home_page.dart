@@ -293,7 +293,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * .45,
+                    height: MediaQuery.of(context).size.height * .10,
                   )
                 ],
               )
