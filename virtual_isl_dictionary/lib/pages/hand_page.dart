@@ -26,6 +26,7 @@ class _HandPageState extends State<HandPage> {
   String searchParameter;
   UnityApi _apiController;
   IconData bookmark;
+  bool isLooping;
   bool isLearning;
   Challenge challenge;
   double percentComplete;
@@ -47,6 +48,9 @@ class _HandPageState extends State<HandPage> {
       bookmark = Icons.bookmark;
     } else {
       bookmark = Icons.bookmark_border;
+    }
+    if (isLooping == null) {
+      isLooping = false;
     }
     super.initState();
   }
@@ -160,11 +164,20 @@ class _HandPageState extends State<HandPage> {
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                               ),
-                              Icon(
-                                Icons.repeat,
-                                size: MediaQuery.of(context).size.width * .08,
-                                color: Colors.lightBlue[200],
-                              ),
+                              GestureDetector(
+                                  child:Icon(
+                                    Icons.repeat,
+                                    size:
+                                        MediaQuery.of(context).size.width * .08,
+                                    color: Colors.lightBlue[200],
+                                  ), onTap: () {
+                                if (isLooping == true) {
+                                  isLooping = false;
+                                } else {
+                                  isLooping = true;
+                                }
+                                _apiController.setLooping(isLooping);
+                              }),
                             ],
                           ),
                           isLearning ? Padding(
