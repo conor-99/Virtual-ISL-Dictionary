@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:virtual_isl_dictionary/pages/challenge_list_page.dart';
 import 'package:virtual_isl_dictionary/widgets/CustomDrawer.dart';
 import 'package:virtual_isl_dictionary/widgets/LearningCategory.dart';
 
@@ -86,10 +87,8 @@ class _LearningPageState extends State<LearningPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HandPage(
-                                      isLearning: true,
+                                    builder: (context) => ChallengeListPage(
                                       user: this.user,
-                                      searchParameter: nextWord,
                                       challenge: this.user.challenges[0],
                                     )));
                           }

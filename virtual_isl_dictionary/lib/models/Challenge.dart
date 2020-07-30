@@ -23,15 +23,18 @@ class Challenge {
   }
 
   nextWord() {
-    return "B";
+    for(int i = 0; i < words.length; i++) {
+      if(words[i]["status"] == "incomplete") {
+        return words[i]["word"];
+      }
+    }
+    return "";
   }
 
   completeWord(String word) {
     for(int i = 0; i < words.length; i++) {
-      if(words[i].containsKey(word)) {
-        words[i] = {
-          word:"complete"
-        };
+      if(words[i]["word"] == word) {
+        words[i]["status"] = "complete";
       }
     }
   }

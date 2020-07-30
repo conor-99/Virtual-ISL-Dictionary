@@ -78,6 +78,8 @@ class _CompletedPageState extends State<CompletedPage> {
               color: Color(0xff64dd17),
               onPressed: () {
                 Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
