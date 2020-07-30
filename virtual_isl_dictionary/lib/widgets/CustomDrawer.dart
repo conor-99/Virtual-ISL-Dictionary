@@ -21,7 +21,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: Column(
         children: <Widget>[
           Container(
-            height: MediaQuery.of(context).size.height * .2,
+            height: MediaQuery.of(context).size.height * .15,
             color: Colors.lightBlueAccent,
             child: SafeArea(
               child: Center(
@@ -44,12 +44,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
               style: TextStyle(color: Colors.blue),
             ),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ProfilePage(
-
-                      )));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()));
             },
           ),
           ListTile(
@@ -66,8 +62,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => BookmarkPage(
-                        user: this.user,
-                      )));
+                            user: this.user,
+                          )));
             },
           ),
           ListTile(
@@ -95,8 +91,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => LearningPage(
-                        user: this.user,
-                      )));
+                            user: this.user,
+                          )));
             },
           ),
           ListTile(
