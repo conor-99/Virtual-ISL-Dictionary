@@ -20,8 +20,8 @@ class ProfilePage extends StatelessWidget {
             children: <Widget>[
               Image(
                   fit: BoxFit.scaleDown,
-                  height: 200,
-                  width: 200,
+                  height: 150,
+                  width: 150,
                   image: AssetImage('assets/images/profile.png')),
               Padding(
                 padding: EdgeInsets.all(15.0),
@@ -39,31 +39,38 @@ class ProfilePage extends StatelessWidget {
               Padding(
                   padding: EdgeInsets.all(6.0),
                   child: Text("Log in to Save Progress",
-                      style: TextStyle(color: Colors.blue[400]))),
-              Text(
-                "Achievements",
-                style: TextStyle(
-                  fontSize: 32.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+                      style: TextStyle(
+                        color: Colors.blue[400],
+                        fontSize: 16,
+                        decoration: TextDecoration.underline,
+                      ))),
+              Padding(
+                  padding: EdgeInsets.all(6.0),
+                  child: Text(
+                    "Achievements",
+                    style: TextStyle(
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
               Padding(
                 padding: EdgeInsets.all(6.0),
                 child: Container(
                     width: 400,
-                    height: 45,
+                    height: 50,
                     decoration: BoxDecoration(
                         color: Colors.lightBlue[300],
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Center(
                         child: Column(
                       children: <Widget>[
-                        Text(
-                          "Baby's First Step",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
+                        Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text("Baby's First Step",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              )),
                         ),
                         Padding(
                             padding: EdgeInsets.all(2.0),
@@ -81,19 +88,20 @@ class ProfilePage extends StatelessWidget {
                 padding: EdgeInsets.all(6.0),
                 child: Container(
                     width: 400,
-                    height: 45,
+                    height: 50,
                     decoration: BoxDecoration(
                         color: Colors.lightBlue[300],
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Center(
                         child: Column(
                       children: <Widget>[
-                        Text(
-                          "Mom Get The Camera",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
+                        Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text("Mom Get The Camera",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              )),
                         ),
                         Padding(
                             padding: EdgeInsets.all(2.0),
@@ -111,19 +119,20 @@ class ProfilePage extends StatelessWidget {
                 padding: EdgeInsets.all(6.0),
                 child: Container(
                     width: 400,
-                    height: 45,
+                    height: 50,
                     decoration: BoxDecoration(
                         color: Colors.lightBlue[300],
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Center(
                         child: Column(
                       children: <Widget>[
-                        Text(
-                          "Zoo Keeper",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
+                        Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text("Zoo Keeper",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              )),
                         ),
                         Padding(
                             padding: EdgeInsets.all(2.0),
@@ -141,20 +150,22 @@ class ProfilePage extends StatelessWidget {
                 padding: EdgeInsets.all(6.0),
                 child: Container(
                     width: 400,
-                    height: 45,
+                    height: 50,
                     decoration: BoxDecoration(
                         color: Colors.lightBlue[300],
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Center(
                         child: Column(
                       children: <Widget>[
-                        Text(
-                          "Food Specialist",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        ),
+                        Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Food Specialist",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
+                            )),
                         Padding(
                             padding: EdgeInsets.all(2.0),
                             child: Text(
