@@ -13,6 +13,7 @@ import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:virtual_isl_dictionary/models/User.dart';
 import 'bookmark_page.dart';
 import 'learn_page.dart';
+import 'setting_page.dart';
 
 class HomePage extends StatefulWidget {
   User user;
@@ -251,6 +252,14 @@ class _HomePageState extends State<HomePage> {
                         topColor: Colors.yellow,
                         bottomColor: Colors.yellow,
                         extended: false,
+
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SettingPage(
+                                  )));
+                        },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
