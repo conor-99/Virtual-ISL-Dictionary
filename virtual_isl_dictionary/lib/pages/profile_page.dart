@@ -48,7 +48,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       alignment: MainAxisAlignment.center,
                       animation: true,
                       lineHeight: 30,
-                      animationDuration: 1800,
+                      animationDuration: 900,
                       percent: 0.8,
                       center: Text(
                         "Level " + user.level.toString(),
