@@ -325,6 +325,17 @@ class _HandPageState extends State<HandPage> with TickerProviderStateMixin {
                       user: this.user,
                     )));
       }
+      else {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => HandPage(
+                  isLearning: true,
+                  user: this.user,
+                  searchParameter: this.challenge.nextWord(),
+                  challenge: this.user.challenges[0],
+                )));
+      }
     } else {
       setState(() {
         animationController
