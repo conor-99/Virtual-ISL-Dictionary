@@ -234,7 +234,9 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ProfilePage()));
+                                  builder: (context) => ProfilePage(
+                                        user: this.user,
+                                      )));
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
