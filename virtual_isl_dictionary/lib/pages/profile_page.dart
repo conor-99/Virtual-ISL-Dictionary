@@ -1,0 +1,174 @@
+import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          iconTheme: IconThemeData(color: Colors.lightBlue[200]),
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: Text(
+            "Profile",
+            style: TextStyle(color: Colors.lightBlue[200]),
+          ),
+        ),
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              Image(
+                  fit: BoxFit.scaleDown,
+                  height: 200,
+                  width: 200,
+                  image: AssetImage('assets/images/profile.png')),
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: new LinearPercentIndicator(
+                  width: MediaQuery.of(context).size.width - 50,
+                  animation: true,
+                  lineHeight: 20.0,
+                  animationDuration: 1800,
+                  percent: 0.8,
+                  center: Text("80.0%"),
+                  linearStrokeCap: LinearStrokeCap.roundAll,
+                  progressColor: Colors.yellow[300],
+                ),
+              ),
+              Padding(
+                  padding: EdgeInsets.all(6.0),
+                  child: Text("Log in to Save Progress",
+                      style: TextStyle(color: Colors.blue[400]))),
+              Text(
+                "Achievements",
+                style: TextStyle(
+                  fontSize: 32.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(6.0),
+                child: Container(
+                    width: 400,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlue[300],
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Center(
+                        child: Column(
+                      children: <Widget>[
+                        Text(
+                          "Baby's First Step",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Learnt a Letter",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.0,
+                              ),
+                            ))
+                      ],
+                    ))),
+              ),
+              Padding(
+                padding: EdgeInsets.all(6.0),
+                child: Container(
+                    width: 400,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlue[300],
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Center(
+                        child: Column(
+                      children: <Widget>[
+                        Text(
+                          "Mom Get The Camera",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Finished an Exercise",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.0,
+                              ),
+                            ))
+                      ],
+                    ))),
+              ),
+              Padding(
+                padding: EdgeInsets.all(6.0),
+                child: Container(
+                    width: 400,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlue[300],
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Center(
+                        child: Column(
+                      children: <Widget>[
+                        Text(
+                          "Zoo Keeper",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Finished Animals Module",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.0,
+                              ),
+                            ))
+                      ],
+                    ))),
+              ),
+              Padding(
+                padding: EdgeInsets.all(6.0),
+                child: Container(
+                    width: 400,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlue[300],
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Center(
+                        child: Column(
+                      children: <Widget>[
+                        Text(
+                          "Food Specialist",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.0,
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.all(2.0),
+                            child: Text(
+                              "Finished Foods Module",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14.0,
+                              ),
+                            ))
+                      ],
+                    ))),
+              )
+            ],
+          ),
+        ));
+  }
+}
