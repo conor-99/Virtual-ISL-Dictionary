@@ -48,7 +48,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => ProfilePage(
-
+                        user: this.user,
                       )));
             },
           ),
