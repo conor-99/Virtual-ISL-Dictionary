@@ -12,8 +12,14 @@ void main() {
 class App extends StatelessWidget {
   Challenge letters = Challenge(
     words: [
-      {"A":"complete"},
-      {"B":"incomplete"}
+      {
+        "word":"A",
+        "status":"complete"
+      },
+      {
+        "word":"B",
+        "status":"incomplete"
+      }
     ],
     title: "Letters"
   );

@@ -19,17 +19,22 @@ class HandPage extends StatefulWidget {
       new _HandPageState(this.searchParameter, this.user, this.isLearning, this.challenge);
 }
 
-class _HandPageState extends State<HandPage> {
+class _HandPageState extends State<HandPage> with TickerProviderStateMixin {
   User user;
   UnityWidgetController _unityWidgetController;
   double sliderValue = -360;
   String searchParameter;
   UnityApi _apiController;
   IconData bookmark;
+  bool isLooping;
   bool isLearning;
   Challenge challenge;
   double percentComplete;
+  Color testColor = Color(0xff64dd17);
   TextEditingController textEditingController = new TextEditingController();
+  AnimationController animationController;
+  Animation colorAnimation;
+  Animation paddingAnimation;
 
   IconData playPauseIcon = Icons.play_arrow;
 
@@ -37,6 +42,14 @@ class _HandPageState extends State<HandPage> {
 
   @override
   void initState() {
+    animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 100));
+    animationController.addListener(() {
+      setState(() {
+        print("update");
+      });
+    });
+    colorAnimation = ColorTween(begin: Color(0xff64dd17), end: Colors.redAccent).animate(animationController);
+    paddingAnimation = Tween<double>(begin: 0, end: 10).animate(animationController);
     if(isLearning == null) {
       isLearning = false;
     }
@@ -47,6 +60,9 @@ class _HandPageState extends State<HandPage> {
       bookmark = Icons.bookmark;
     } else {
       bookmark = Icons.bookmark_border;
+    }
+    if (isLooping == null) {
+      isLooping = false;
     }
     super.initState();
   }
@@ -61,7 +77,15 @@ class _HandPageState extends State<HandPage> {
             !isLearning ? IconButton(
               icon: Icon(bookmark),
               onPressed: setBookmark,
-            ) : Container()
+            ) : Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, MediaQuery.of(context).size.width*.06, 0),
+              child: Center(
+                child: Text(
+                  challenge.numberComplete().toString() + "/" + challenge.words.length.toString(),
+                  style: TextStyle(color: colorAnimation.value),
+                ),
+              ),
+            )
           ],
           backgroundColor: isLearning ? Colors.white : Colors.lightBlue[200],
           title: !isLearning ? Text(
@@ -73,7 +97,7 @@ class _HandPageState extends State<HandPage> {
               lineHeight: 14,
               percent: this.percentComplete/100,
               backgroundColor: Colors.grey[200],
-              progressColor: Color(0xff64dd17),
+              progressColor: colorAnimation.value,
               animation: true,
               animationDuration: 200,
             ),
@@ -160,11 +184,20 @@ class _HandPageState extends State<HandPage> {
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 10),
                               ),
-                              Icon(
-                                Icons.repeat,
-                                size: MediaQuery.of(context).size.width * .08,
-                                color: Colors.lightBlue[200],
-                              ),
+                              GestureDetector(
+                                  child:Icon(
+                                    Icons.repeat,
+                                    size:
+                                        MediaQuery.of(context).size.width * .08,
+                                    color: Colors.lightBlue[200],
+                                  ), onTap: () {
+                                if (isLooping == true) {
+                                  isLooping = false;
+                                } else {
+                                  isLooping = true;
+                                }
+                                _apiController.setLooping(isLooping);
+                              }),
                             ],
                           ),
                           isLearning ? Padding(
@@ -191,13 +224,16 @@ class _HandPageState extends State<HandPage> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: <Widget>[
-                                    RaisedButton(
-                                      child: Text("Continue"),
-                                      textColor: Colors.white,
-                                      color: Color(0xff64dd17),
-                                      onPressed: () {
-                                        guessWord(textEditingController.text);
-                                      },
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(0, 0, paddingAnimation.value, 0),
+                                      child: RaisedButton(
+                                        child: Text("Continue"),
+                                        textColor: Colors.white,
+                                        color: colorAnimation.value,
+                                        onPressed: () {
+                                          guessWord(textEditingController.text);
+                                        },
+                                      ),
                                     )
                                   ],
                                 )
@@ -259,6 +295,11 @@ class _HandPageState extends State<HandPage> {
                   user: this.user,
                 )));
       }
+    } else {
+      setState(() {
+        animationController.forward().whenComplete(() => animationController.reverse());
+
+      });
     }
   }
 
