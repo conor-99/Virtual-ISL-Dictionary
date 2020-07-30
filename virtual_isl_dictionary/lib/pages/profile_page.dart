@@ -37,29 +37,35 @@ class _ProfilePageState extends State<ProfilePage> {
                         fit: BoxFit.scaleDown,
                         height: 150,
                         width: 150,
-                        image: AssetImage('assets/images/profile.png')
-                    ),
+                        image: AssetImage('assets/images/profile.png')),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal:MediaQuery.of(context).size.width*.1, vertical: MediaQuery.of(context).size.height*.02),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * .1,
+                        vertical: MediaQuery.of(context).size.height * .02),
                     child: LinearPercentIndicator(
+                      width: MediaQuery.of(context).size.width * .6,
+                      alignment: MainAxisAlignment.center,
                       animation: true,
                       lineHeight: 30,
                       animationDuration: 1800,
                       percent: 0.8,
-                      center: Text("Level " + user.level.toString(), style: TextStyle(fontWeight: FontWeight.bold),),
+                      center: Text(
+                        "Level " + user.level.toString(),
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                       linearStrokeCap: LinearStrokeCap.roundAll,
                       progressColor: Colors.yellow[300],
                       backgroundColor: Colors.grey[300],
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsets.fromLTRB(0,0,0,20),
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: Text("Log in to Save Progress",
                           style: TextStyle(
-                            color: Colors.blue[300],
-                            fontSize: 16,
-                          ))),
+                              color: Colors.blue[300],
+                              fontSize: 16,
+                              decoration: TextDecoration.underline))),
                   Padding(
                       padding: EdgeInsets.all(6.0),
                       child: Text(
@@ -75,7 +81,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 400,
                         decoration: BoxDecoration(
                             color: Colors.lightBlue[300],
-                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Center(
@@ -108,7 +115,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 400,
                         decoration: BoxDecoration(
                             color: Colors.lightBlue[300],
-                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Center(
@@ -141,7 +149,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 400,
                         decoration: BoxDecoration(
                             color: Colors.lightBlue[300],
-                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Center(
@@ -174,7 +183,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: 400,
                         decoration: BoxDecoration(
                             color: Colors.lightBlue[300],
-                            borderRadius: BorderRadius.all(Radius.circular(10))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
                         child: Padding(
                           padding: const EdgeInsets.all(15),
                           child: Center(
