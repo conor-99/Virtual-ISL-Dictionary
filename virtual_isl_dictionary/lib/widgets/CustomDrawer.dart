@@ -3,6 +3,7 @@ import 'package:virtual_isl_dictionary/models/User.dart';
 import 'package:virtual_isl_dictionary/pages/hand_page.dart';
 import 'package:virtual_isl_dictionary/pages/learn_page.dart';
 import 'package:virtual_isl_dictionary/pages/bookmark_page.dart';
+import 'package:virtual_isl_dictionary/pages/profile_page.dart';
 
 class CustomDrawer extends StatefulWidget {
   User user;
@@ -32,6 +33,24 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     fontWeight: FontWeight.bold),
               )),
             ),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.person,
+              color: Colors.blue,
+            ),
+            title: Text(
+              "Profile",
+              style: TextStyle(color: Colors.blue),
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfilePage(
+
+                      )));
+            },
           ),
           ListTile(
             leading: Icon(
